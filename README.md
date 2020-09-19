@@ -61,14 +61,23 @@ Main page with simple text input
 
 # How to Install
 
-Configure your `.env` as it fits your working your env
-- Checkout your database PORT
-- Checkout your database NAME
-- Don't forget to create Database named `job_portal`
-- Open any Laravel Project and copy the files mentioned in `.gitignore` file to the this project
+- Install the `Git Tool` from the official site
+- Open your `Git Bash Terminal` in the folder where you want to setup the project 
+and use the command  `git clone https://github.com/Omeganes/Job-Portal` to copy the Repo to your PC.
+- Then the command `cd Job-Portal` to change to the project folder.
+- Then the command `composer install` to install the dependencies.
+- Then the command `npm install` to install the assets for the project.
+- Configure the `.env` as it fits your working your env
+    - Checkout the `DB_PORT`
+    - Checkout the `DB_DATABASE`
+    - Checkout the `DB_USERNAME` "default is root"
+    - Checkout the `DB_PASSWORD` "default is empty"
+- Don't forget to create Database named [job_portal]
+    - to do so, run the SQL command `CREATE DATABASE job_portal` in the phpmyadmin panel.
 
 # Contribution Hints
 
-- Please Please please Follow the naming conventions
-    - database names follow the `underscore and the all lowercase` rule
-- all variables in PHP follow `camelcase rule`
+- Please Please please Follow the naming conventions.
+    - database names follow the `underscore and the all lowercase` rule.
+- All variables in PHP follow `camelcase rule`.
+- Databases are [ONLY] created using migrations.
