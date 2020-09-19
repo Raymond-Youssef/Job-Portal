@@ -65,6 +65,7 @@ Configure your `.env` as it fits your working your env
 - Checkout your database PORT
 - Checkout your database NAME
 - Don't forget to create Database named `job_portal`
+- Open any Laravel Project and copy the files mentioned in `.gitignore` file to the this project
 
 # Contribution Hints
 
