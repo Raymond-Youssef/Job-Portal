@@ -15,34 +15,35 @@ This is a hiring web application that implements the Laravel PHP framework
 
 ## Student Module
 
-- Students are able to login to the application with his credentials and he will only have access to his own data.
-- Student are able to maintain multiple resumes • One resume shall be marked as default.
-- Student are able to maintain his cover letter.
-- Student are able to watch list of active jobs.
-    - Your application must have following filters for job Title, Skills, Location.
+- Students are able to login to the application with their credentials and they will only have access to their own data.
+- Students are able to maintain multiple resumes • One resume shall be marked as default.
+- Students are able to maintain their cover letter.
+- Students are able to watch a list of active jobs.
+    - Your application must have the following filters: (job Title, Skills and Location).
 - On every page there is a list of recommended jobs.
-    - Recommended jobs must be jobs matching with the resume of the user
-- Student must are able to a job
-    - On click of apply button; a popup should confirm if the user wants to upload a new resume or use existing resumes.
+    - Recommended jobs must be jobs matching with the resume of the user.
+- Student are able apply to a job.
+    - On click on apply button; a popup should prompt the user to upload a new resume or use existing resumes.
     - After confirmation the resume must be sent to the company that posted the job.
-- Student are able to track his job application (Company will update the status; that will be show to the student)
-- Students must receive a notification whenever status of any of their job applications update.
+- Students are able to track their job application (Company will update the status; that will be shown to the student).
+- Students must receive a notification whenever status of any of their job applications updates.
 
 
 ## Company module
 
-- Company manager are able to login to the application with his credentials and he will only have access to his own data.
+- Company managers are able to login to the application with their credentials and they will only have access to their own data.
 - They are able to manage jobs.
-- They are able to watch applications/submissions against a job and change their statuses.
+- They are able to watch applications/submissions to a job and change their statuses.
 
 
 ## Admin module
 
 - Administrators are able to approve their students.
-    - A badge is assigned to their students indicating a verified student of their institute.
-- Administrator are able to remove/block any user, job or application.
-- Administrator are able to reset password of any of the users.
-- Admin must are able to watch the list of all registered and unemployed students(specifically of their institute).
+    - A badge is assigned to their students indicating verification of students at their institute.
+- Administrators are able to remove/block any user, job or application.
+- Administrators are able to reset passwords of any of the users.
+- Admins are able to watch a list of all registered and unemployed students(specifically of their institute).
+
 
 # Landing Page
 
