@@ -36,7 +36,7 @@ This is a hiring web application that implements the Laravel PHP framework
 - They are able to watch applications/submissions against a job and change their statuses.
 
 
-## Admin
+## Admin module
 
 - Administrators are able to approve their students.
     - A badge is assigned to their students indicating a verified student of their institute.
@@ -72,7 +72,7 @@ and use the command  `git clone https://github.com/Omeganes/Job-Portal` to copy 
     - Checkout the `DB_DATABASE`
     - Checkout the `DB_USERNAME` "default is root"
     - Checkout the `DB_PASSWORD` "default is empty"
-- Don't forget to create Database named [job_portal]
+- Don't forget to create Database named `job_portal`
     - to do so, run the SQL command `CREATE DATABASE job_portal` in the phpmyadmin panel.
 
 # Contribution Hints
@@ -80,4 +80,4 @@ and use the command  `git clone https://github.com/Omeganes/Job-Portal` to copy 
 - Please Please please Follow the naming conventions.
     - database names follow the `underscore and the all lowercase` rule.
 - All variables in PHP follow `camelcase rule`.
-- Databases are [ONLY] created using migrations.
+- Databases are ONLY created using migrations.
