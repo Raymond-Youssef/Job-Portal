@@ -5,44 +5,43 @@ This is the graduation project from Open Source track summer training provided b
 The Project Name is Job Portal
 This is a hiring web application that implements the Laravel PHP framework
 
-# Users can:
-- Register/Login as a Student or Company "as well as admins but it's seeded internally".
+# Users Can:
+- Register/Login as a Job Applicant or Company "as well as Admins but it's seeded internally".
 - Forget password and reset passowrd.
 - Update password.
 - Update profile (picture, contact, etc.).
 
 # App Modules
 
-## Student Module
+## Job Applicant Module
 
-- Students are able to login to the application with their credentials and they will only have access to their own data.
-- Students are able to maintain multiple resumes • One resume shall be marked as default.
-- Students are able to maintain their cover letter.
-- Students are able to watch a list of active jobs.
-    - Your application must have the following filters: (job Title, Skills and Location).
-- On every page there is a list of recommended jobs.
-    - Recommended jobs must be jobs matching with the resume of the user.
-- Student are able apply to a job.
+- Applicants are able to login to the application with their credentials and they will only have access to their own data.
+- Applicants are able to maintain multiple resumes • One resume shall be marked as default.
+- Applicants are able to maintain their cover letter.
+- Applicants are able to watch a list of active jobs.
+    - Job applications have the following filters: (job Title, Skills and Location).
+- On every page there is a list of recommended jobs matching with the resume of the user.
+- Applicants are able apply to a job.
     - On click on apply button; a popup should prompt the user to upload a new resume or use existing resumes.
-    - After confirmation the resume must be sent to the company that posted the job.
-- Students are able to track their job application (Company will update the status; that will be shown to the student).
-- Students must receive a notification whenever status of any of their job applications updates.
+    - After confirmation the resume is sent to the company that posted the job.
+- Applicants are able to track their job application (Company will update the status; that will be shown to the applicants).
+- An applicant receives notification on updates of status of any of their job applications.
 
 
-## Company module
+## Company Module
 
 - Company managers are able to login to the application with their credentials and they will only have access to their own data.
 - They are able to manage jobs.
 - They are able to watch applications/submissions to a job and change their statuses.
 
 
-## Admin module
+## Website Admin Module
 
-- Administrators are able to approve their students.
-    - A badge is assigned to their students indicating verification of students at their institute.
+- Administrators are able to approve users.
+    - A badge is assigned to users indicating verification.
 - Administrators are able to remove/block any user, job or application.
 - Administrators are able to reset passwords of any of the users.
-- Admins are able to watch a list of all registered and unemployed students(specifically of their institute).
+- Admins are able to watch a list of all registered and unemployed applicants(specifically of an institute).
 
 
 # Landing Page
@@ -78,7 +77,7 @@ and use the command  `git clone https://github.com/Omeganes/Job-Portal` to copy 
 
 # Contribution Hints
 
-- Please Please please Follow the naming conventions.
+- It's NECESSARY to follow the naming conventions!
     - database names follow the `underscore and the all lowercase` rule.
 - All variables in PHP follow `camelcase rule`.
-- Databases are ONLY created using migrations.
+- Databases are ONLY created using migrations and not from phpmyadmin panel.
