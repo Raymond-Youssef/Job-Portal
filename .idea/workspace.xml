@@ -29,9 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="Fixes towards more dynamic assets">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_184314_create_resumes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_184314_create_resumes_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,6 +316,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1493" height="214" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600635325845" />
+    <state x="147" y="65" key="MergeDialog" timestamp="1600639854253">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="147" y="65" key="MergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1600639854253" />
     <state x="277" y="62" key="SettingsEditor" timestamp="1600605193028">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -333,6 +336,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="586" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1600605613200" />
+    <state x="550" y="130" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600639812031">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="550" y="130" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.834@0.0.1536.834" timestamp="1600639812031" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1600632864883">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -341,10 +348,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1600607008395" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600638709641">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600638888130">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600638709641" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600638888130" />
     <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600636535513">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
