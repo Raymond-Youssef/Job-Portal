@@ -9,20 +9,21 @@
         {{-- Header Component --}}
         @include('shared.header')
 
-        <main class="py-4">
+        <main class="py-4" style="margin-top: 3.5rem;">
             {{--Here goes the main content--}}
             @yield('content')
         </main>
 
-    </div>
 
-    <footer id="footer" class="blog-footer section-bg">
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong>Job Portal</strong>. All Rights Reserved
+        <footer id="footer" class="blog-footer section-bg">
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong>Job Portal</strong>. All Rights Reserved
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+
+    </div>
 
     {{-- Javascript --}}
     @include('shared.javascript')
