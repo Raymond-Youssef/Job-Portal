@@ -10,7 +10,12 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form">
-                            <h1 class="display-4">{{ __('Reset Password') }}</h1>
+                            <h1 class="display-4r">{{ __('Reset Password') }}</h1>
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
 
