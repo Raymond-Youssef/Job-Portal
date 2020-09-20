@@ -35,31 +35,32 @@
 <body>
 <section id="hero" class="clearfix">
     <div class="container d-flex h-100">
-    
+
       <div class="row justify-content-center align-self-center" data-aos="fade-up">
         <div class="col-md-6 intro-info order-md-first order-last" data-aos="zoom-in" data-aos-delay="100">
           <!-- <span><h5>Your Job Search Engine</h5></span> -->
-          
+
           <br><h2>Find Best Job From Top Companies</h2>
           <br>
           <div>
           <form>
-          
-          
+
+
           <input type ="text" class="search-field job" placeholder="job title,company name..">
           <input type ="text" class="search-field location" placeholder="location">
           <!-- <button class="search-btn" type= "button">Search</button>  -->
           <a href="#about" class="btn-get-started scrollto">search</a>
           </form>
           </div>
-          
+
 
         </div>
 
         <div class="col-md-6 intro-img order-md-last order-first" data-aos="zoom-out" data-aos-delay="200">
-        <img src="assets/img/features-1.svg" class="img-fluid" alt="">       
+        <img src="assets/img/features-1.svg" class="img-fluid" alt="">
       </div>
 
+    </div>
     </div>
   </section><!-- End Hero -->
 
@@ -78,7 +79,7 @@
             <div class="box">
               <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
               <h4 class="title"><a href="">Jobs By Function</a></h4>
-              
+
             </div>
           </div>
           <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
@@ -100,7 +101,7 @@
             </div>
           </div>
 
-          
+
         </div>
 
       </div>
