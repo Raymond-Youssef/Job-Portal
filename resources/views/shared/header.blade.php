@@ -1,4 +1,4 @@
-<header id="header" class="header-transparent">
+<header id="header" class="fixed-top header-transparent">
     <div class="container d-flex align-items-center">
         <h1 class="logo mr-auto"><a href="{{ route('landing-page') }}">{{ config('app.name', 'Laravel') }}</a></h1>
         <nav class="main-nav d-none d-lg-block">
