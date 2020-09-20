@@ -20,6 +20,14 @@
                                                          document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+                                
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile') }}"
+                                   >
+                                    {{ __('profile') }}
+                                </a>
+                                
                             </li>
                             <li><form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
