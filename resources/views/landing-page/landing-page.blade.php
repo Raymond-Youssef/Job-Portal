@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-@extends('layouts.app')
-||||||| 662b1eb
-=======
+
 @extends('layouts.app')
 
 @section('content')
@@ -23,4 +20,3 @@
     </div>
   </section><!-- End Hero -->
 @endsection
->>>>>>> ef482ac7dc663d037d051f677110d9eea0e292ff
