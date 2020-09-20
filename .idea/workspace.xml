@@ -16,12 +16,22 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="">
+    <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="Fixes towards more dynamic assets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shared/head-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shared/head-content.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/shared/javascript.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shared/javascript.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,6 +227,7 @@
       <updated>1600539016356</updated>
       <workItem from="1600539018027" duration="3801000" />
       <workItem from="1600543005410" duration="12199000" />
+      <workItem from="1600599361820" duration="4185000" />
     </task>
     <servers />
   </component>
@@ -234,6 +245,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixes towards more dynamic assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes towards more dynamic assets" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1600558060224">

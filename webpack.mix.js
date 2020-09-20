@@ -14,12 +14,4 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
 
-mix.styles([
-    'resources/assets/css/vendor/bootstrap/css/bootstrap.css',
-    'resources/assets/css/vendor/font-awesome/css/font-awesome.min.css',
-    'resources/assets/css/vendor/ionicons/css/ionicons.min.css',
-    'resources/assets/css/vendor/venobox/venobox.css',
-    'resources/assets/css/vendor/owl.carousel/assets/owl.carousel.min.css',
-    'resources/assets/css/vendor/aos/aos.css',
-    'resources/assets/css/style.css'
-], 'public/css/all.css');
+
