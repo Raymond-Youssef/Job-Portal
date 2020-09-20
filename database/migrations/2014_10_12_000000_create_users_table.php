@@ -19,10 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->date('birth_date');
-            $table->text('cover_letter');
-            $table->foreignId('company_id')->constrained();
-            $table->foreignId('image_id')->constrained();
+            $table->date('birth_date')->nullable();
+            $table->text('cover_letter')->nullable();
+            $table->foreignId('company_id')->nullable()->constrained();
+            $table->foreignId('image_id')->nullable()->constrained();
             $table->rememberToken();
             $table->timestamps();
         });
