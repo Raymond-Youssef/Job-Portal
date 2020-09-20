@@ -15,7 +15,9 @@ class CreateResumesTable extends Migration
     {
         Schema::create('resumes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained();
+            $table->binary('file');
+            $table->boolean('default')->default(false);
         });
     }
 

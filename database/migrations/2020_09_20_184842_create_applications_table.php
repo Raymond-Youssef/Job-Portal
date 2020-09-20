@@ -15,7 +15,10 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('status',['applied','selected','not selected'])->default('applied');
+            $table->dateTime('created_at');
         });
     }
 
