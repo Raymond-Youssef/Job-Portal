@@ -30,11 +30,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="Fixes towards more dynamic assets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_184314_create_resumes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_184314_create_resumes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_184722_create_companies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_184722_create_companies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_184842_create_applications_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_184842_create_applications_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_184906_create_jobs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_184906_create_jobs_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +235,7 @@
       <workItem from="1600539018027" duration="3801000" />
       <workItem from="1600543005410" duration="12199000" />
       <workItem from="1600599361820" duration="5628000" />
-      <workItem from="1600605031933" duration="12915000" />
+      <workItem from="1600605031933" duration="13355000" />
     </task>
     <task id="LOCAL-00001" summary="Fixes towards more dynamic assets">
       <created>1600603586500</created>
