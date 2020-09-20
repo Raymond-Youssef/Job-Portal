@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -16,12 +19,18 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="">
+    <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="Fixes towards more dynamic assets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +48,13 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Omeganes/Job-Portal" />
+      </set>
+    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -168,6 +184,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -202,8 +219,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.production" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -217,7 +234,17 @@
       <updated>1600539016356</updated>
       <workItem from="1600539018027" duration="3801000" />
       <workItem from="1600543005410" duration="12199000" />
+      <workItem from="1600599361820" duration="5628000" />
+      <workItem from="1600605031933" duration="13355000" />
     </task>
+    <task id="LOCAL-00001" summary="Fixes towards more dynamic assets">
+      <created>1600603586500</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600603586500</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,7 +262,15 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fixes towards more dynamic assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes towards more dynamic assets" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="561" y="275" key="#Scopes" timestamp="1600605664687">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="561" y="275" key="#Scopes/0.0.1536.834@0.0.1536.834" timestamp="1600605664687" />
     <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1600558060224">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -252,9 +287,33 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1600558060224" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600541648314">
+    <state x="277" y="62" key="SettingsEditor" timestamp="1600605193028">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600541648314" />
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1600605193028" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1600603596053">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1600603596053" />
+    <state x="648" y="357" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1600604372744">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="648" y="357" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog/0.0.1536.834@0.0.1536.834" timestamp="1600604372744" />
+    <state x="586" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600605613200">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="586" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1600605613200" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1600607008395">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1600607008395" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600616611360">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600616611360" />
+    <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600609112847">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.834@0.0.1536.834" timestamp="1600609112847" />
   </component>
 </project>

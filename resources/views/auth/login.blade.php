@@ -5,6 +5,9 @@
         <div class="footer-top">
             <div class="container">
                 <div class="row">
+                    <div class="col-md-6 intro-img order-first aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
+                        <img src="{{asset('assets/img/intro-img.svg')}}" alt="" class="img-fluid">
+                    </div>
                     <div class="col-lg-6">
                         <div class="form">
                             <h1 class="display-4">{{ __('Login') }}</h1>
@@ -53,7 +56,7 @@
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-lg btn-primary">
                                             {{ __('Login') }}
                                         </button>
 
@@ -66,9 +69,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="col-md-6 intro-img order-md-last order-first aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="assets/img/intro-img.svg" alt="" class="img-fluid">
                     </div>
                 </div>
             </div>
