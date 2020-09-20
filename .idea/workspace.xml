@@ -29,10 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="Fixes towards more dynamic assets">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/landing-page/landing-page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/landing-page/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/shared/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/shared/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
