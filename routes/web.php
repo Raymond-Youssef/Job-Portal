@@ -15,8 +15,12 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('landing-page.landing-page');
+    return view('landing-page.master');
 })->name('landing-page');
+
+Route::get('/profile', function (){
+    return view('profile.master');
+})->name('profile');
 
 Auth::routes();
 

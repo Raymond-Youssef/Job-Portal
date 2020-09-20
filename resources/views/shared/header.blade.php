@@ -14,6 +14,13 @@
                             {{ Auth::user()->name }}
                         </a></a>
                         <ul>
+
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('Profile') }}
+                                </a>
+                            </li>
+
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -21,9 +28,11 @@
                                     {{ __('Logout') }}
                                 </a>
                             </li>
-                            <li><form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
-                                </form></li>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 @endguest
