@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -26,3 +27,9 @@ Route::get('/test', function (){
     $user = User::find(1);
     return $user->resumes;
 });
+
+
+
+
+
+Route::resource('/resume',ResumeController::class);

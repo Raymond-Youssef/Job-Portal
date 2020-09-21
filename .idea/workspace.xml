@@ -29,8 +29,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33219e46-77bd-4747-9f2e-961c9605c859" name="Default Changelist" comment="Fixes towards more dynamic assets">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Job Portal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Job Portal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ResumeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResumeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Resume.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Resume.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_20_184314_create_resumes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_20_184314_create_resumes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +177,7 @@
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hjyuHhwVk8fKOieJB3fOgTSpCe" />
@@ -189,6 +201,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Self Learning\Job-Portal\resources\views\test" />
       <recent name="E:\Self Learning\Job Portal\resources\css" />
     </key>
   </component>
@@ -348,13 +361,13 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1600607008395" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600638888130">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1600659661552">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600638888130" />
-    <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600636535513">
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600659661552" />
+    <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1600659793856">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.834@0.0.1536.834" timestamp="1600636535513" />
+    <state x="491" y="329" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.834@0.0.1536.834" timestamp="1600659793856" />
   </component>
 </project>
