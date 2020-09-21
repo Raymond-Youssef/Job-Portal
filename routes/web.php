@@ -22,6 +22,10 @@ Route::get('/profile', function (){
     return view('profile.master');
 })->name('profile');
 
+Route::get('/edit', function (){
+    return view('editing.edit');
+})->name('edit');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
