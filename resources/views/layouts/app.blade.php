@@ -5,28 +5,30 @@
 </head>
 
 <body>
-    <div id="app">
-        {{-- Header Component --}}
-        @include('shared.header')
+<div id="app">
+    {{-- Header Component --}}
+    @include('shared.header')
 
-        <main class="py-4" style="margin-top: 3.5rem;">
-            @include('shared.flashMessages')
-            {{--Here goes the main content--}}
-            @yield('content')
-        </main>
+    <main class="py-4" style="margin-top: 5rem; background: #f5f8fd;">
+        {{-- Flash Messages --}}
+        @include('shared.flashMessages')
+        {{--Here goes the main content--}}
+        @yield('content')
+    </main>
 
 
-        <footer id="footer" class="blog-footer section-bg">
-            <div class="container">
-                <div class="copyright">
-                    &copy; Copyright <strong>Job Portal</strong>. All Rights Reserved
-                </div>
+    <footer id="footer" class="blog-footer section-bg">
+        <div class="container">
+
+            <div class="copyright">
+                &copy; Copyright <strong>Job Portal</strong>. All Rights Reserved
             </div>
-        </footer>
+        </div>
+    </footer>
 
-    </div>
+</div>
 
-    {{-- Javascript --}}
-    @include('shared.javascript')
+{{-- Javascript --}}
+@include('shared.javascript')
 </body>
 </html>

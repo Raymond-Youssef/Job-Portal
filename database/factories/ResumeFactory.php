@@ -23,7 +23,10 @@ class ResumeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => 1,
+            'name' => 'resume1',
+            'path' => '/resumes/test',
+            'default' => false,
         ];
     }
 }

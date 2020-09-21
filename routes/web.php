@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\ProfileController;
+//use App\Http\Controllers\ResumeController;
+//use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,21 +26,21 @@ Route::get('/profile', function (){
     return view('profile.master');
 })->name('profile');
 
-Route::get('/edit', function (){
-    return view('editing.edit');
-})->name('edit');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/test', function (){
-    $user = User::find(1);
-    return $user->resumes;
-});
+//Route::get('/test', [ProfileController::class,'index']
+//);
 
 
 
 
 
-Route::resource('/resume',ResumeController::class);
+//Route::resource('/resume',ResumeController::class);
+//Route::resource('/image',ImageController::class);
+
+Route::get('/profile',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
+Route::get('/profile/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
+Route::patch('/profile',[ProfileController::class, 'edit'])->name('profile.update'); // Update the user profile

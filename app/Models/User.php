@@ -38,6 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function image()
+    {
+        return $this->belongsTo('App\Models\Image');
+    }
     public function resumes()
     {
         return $this->hasMany('App\Models\Resume');

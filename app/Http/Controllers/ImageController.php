@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Resume;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class ImageController extends Controller
@@ -25,7 +27,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return view('test.image');
     }
 
     /**
@@ -36,20 +38,19 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'file' => 'required|image|max:2048'
-        ]);
-        $image_file = $request->image_file;
-
-        $image = Image::make($image_file);
-
-        Response::make($image->encode('jpeg'));
-
-        $form_data = array(
-            'file' => $image
-        );
-
-        Image::create($form_data);
+        if($file = $request->file('image'))
+        {
+            $name = $file->getClientOriginalName();
+            if($path = $request->image->store('images'))
+            {
+                $image = new Image();
+                $image->name = $name;
+                $image->path = $path;
+                $image->save();
+                return redirect()->back()->with('success','File uploaded Successfully');
+            }
+        }
+        return redirect()->back()->with('error','File was NOT uploaded successfully');
     }
 
     /**

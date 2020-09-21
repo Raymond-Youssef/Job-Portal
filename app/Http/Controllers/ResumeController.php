@@ -16,7 +16,9 @@ class ResumeController extends Controller
      */
     public function index()
     {
-
+//        $file = Resume::all();
+//        $url = Storage::url($file->path);
+//        echo '<img src="'.asset($file->path).'">';
     }
 
     /**
@@ -26,7 +28,7 @@ class ResumeController extends Controller
      */
     public function create()
     {
-        return view('test.master');
+        return view('test.resume');
     }
 
     /**

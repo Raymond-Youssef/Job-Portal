@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('birth_date')->nullable();
             $table->text('cover_letter')->nullable();
-            $table->foreignId('company_id')->nullable()->constrained();
+//            $table->foreignId('company_id')->nullable()->constrained();
             $table->foreignId('image_id')->nullable()->constrained();
             $table->rememberToken();
             $table->timestamps();

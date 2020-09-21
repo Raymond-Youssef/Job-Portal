@@ -10,6 +10,6 @@ class Resume extends Model
     use HasFactory;
 
     protected $fillable = [
-      'file', 'name'
+        'name','path','default'
     ];
 }
