@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+//use App\Http\Controllers\ResumeController;
+//use App\Http\Controllers\ImageController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +19,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('landing-page.master');
+})->name('landing-page');
+
+Route::get('/profile', function (){
+    return view('profile.master');
+})->name('profile');
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/test', [ProfileController::class,'index']
+//);
+
+
+
+
+
+//Route::resource('/resume',ResumeController::class);
+//Route::resource('/image',ImageController::class);
+
+Route::get('/profile',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
+Route::get('/profile/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
+Route::patch('/profile',[ProfileController::class, 'edit'])->name('profile.update'); // Update the user profile
