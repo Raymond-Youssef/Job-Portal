@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ImageController extends Controller
 {
@@ -35,7 +36,20 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'file' => 'required|image|max:2048'
+        ]);
+        $image_file = $request->image_file;
+
+        $image = Image::make($image_file);
+
+        Response::make($image->encode('jpeg'));
+
+        $form_data = array(
+            'file' => $image
+        );
+
+        Image::create($form_data);
     }
 
     /**

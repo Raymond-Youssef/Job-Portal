@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Resume extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+      'file', 'name'
+    ];
 }

@@ -10,6 +10,7 @@
         @include('shared.header')
 
         <main class="py-4" style="margin-top: 3.5rem;">
+            @include('shared.flashMessages')
             {{--Here goes the main content--}}
             @yield('content')
         </main>

@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function resumes()
     {
-        var_dump($this->hasMany('App\Models\Resume'));
+        return $this->hasMany('App\Models\Resume');
     }
 }
