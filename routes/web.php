@@ -24,6 +24,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+<<<<<<< HEAD
+Route::get('/searching', function () {
+    return view('searching.search');
+})->name('searching');
+=======
 /*
 |--------------------------------------------------------------------------
 | Profile Routes
@@ -36,8 +41,9 @@ Route::group(['prefix'=>'profile'],function() {
     Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
     Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
     Route::post('/resume/add',[ResumeController::class,'store'])->name('resume.store'); // Add new resume
-    Route::delete('/resume',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
+    Route::delete('/resume/{resume}',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
 });
+>>>>>>> ff80def964d7f99aee8db747ac0dfc86f1999ec4
 
 
 
