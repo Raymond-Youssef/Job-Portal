@@ -3,103 +3,101 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resume;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ResumeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-//        $file = Resume::all();
-//        $url = Storage::url($file->path);
-//        echo '<img src="'.asset($file->path).'">';
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function create()
+    public function __construct()
     {
-        return view('test.resume');
+        $this->middleware('auth');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        if($file = $request->file('resume'))
+        $validation = Validator::make($request->all(),[
+            'resume'=> 'required|max:10000|mimes:doc,docx,pdf',
+        ]);
+
+        if($validation->passes())
         {
-            $name = $file->getClientOriginalName();
+            $resume = $request->file('resume');
+            $name = $resume->getClientOriginalName();
             if($path = $request->resume->store('resumes'))
             {
+                $user = Auth::user();
                 $resume = new Resume();
-                $resume->user_id = Auth::id();
                 $resume->name = $name;
                 $resume->path = $path;
+                $resume->user_id = $user->id;
+                if(count($user->resumes)==0) {
+                    $resume->default = true;
+                }
                 $resume->save();
-                return redirect()->back()->with('success','File uploaded Successfully');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Resume Uploaded Successfully',
+                    'resume_name' => $name,
+                    'resume_path' => asset($resume->path),
+                    'class_name' => 'alert alert-success alert-block container',
+                ]);
+
             }
+
         }
-        return redirect()->back()->with('error','File was NOT uploaded successfully');
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => $validation->errors()->all(),
+                'uploaded_resume' => '',
+                'class_name' => 'alert alert-danger alert-block container'
+            ]);
+        }
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Resume  $resume
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $file = Resume::find($id);
-        $url = Storage::url($file->path);
-        echo '<img src="'.asset($file->path).'">';
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Resume  $resume
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Resume $resume)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Resume  $resume
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Resume $resume)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Resume  $resume
-     * @return \Illuminate\Http\Response
+     * @param Resume $resume
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Resume $resume)
     {
-        //
+        Storage::delete($resume->path);
+        if($resume->default)
+        {
+            $resume->delete();
+            $user = Auth::user();
+            $newDefaultResume = Resume::firstWhere('user_id', $user->id);
+            if($newDefaultResume) {
+                $newDefaultResume->default = true;
+                $newDefaultResume->save();
+            }
+        }
+        else{
+            $resume->delete();
+        }
+        return redirect()->back()->with('success','Resume deleted successfully');
     }
 }

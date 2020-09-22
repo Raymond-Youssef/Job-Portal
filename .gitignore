@@ -1,9 +1,13 @@
 /node_modules
 /public/hot
 /public/storage
+/public/images
 /storage/*.key
+/storage/app/images
+/storage/app/resumes
 /vendor
 /.idea
+/storage/
 .env.backup
 .phpunit.result.cache
 Homestead.json

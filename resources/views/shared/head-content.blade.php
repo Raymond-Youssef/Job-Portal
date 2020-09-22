@@ -22,3 +22,6 @@
 
 <!-- Template Main CSS File -->
 <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+
+<!-- JQuery -->
+<script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>

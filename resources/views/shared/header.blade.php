@@ -10,6 +10,9 @@
                         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @endif
                 @else
+                <li>
+                    <a href="{{ route('Application') }}">Applications</a>
+                </li>
                     <li class="drop-down"><a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
                         </a></a>

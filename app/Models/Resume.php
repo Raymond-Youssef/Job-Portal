@@ -12,4 +12,22 @@ class Resume extends Model
     protected $fillable = [
         'name','path','default'
     ];
+    /**
+     * @var mixed|string
+     */
+    private $name;
+    /**
+     * @var mixed
+     */
+    private $path;
+    /**
+     * @var mixed
+     */
+    private $user_id;
+
+    /**
+     * @var bool|mixed
+     */
+    private $default;
+
 }

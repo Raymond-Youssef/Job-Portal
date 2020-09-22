@@ -2,7 +2,6 @@
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
 <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
@@ -15,3 +14,5 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('assets/js/main.js')}}"></script>
+
+<script src="{{asset('js/AJAX.js')}}"></script>
