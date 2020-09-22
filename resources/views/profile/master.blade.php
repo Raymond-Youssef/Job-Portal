@@ -71,7 +71,11 @@
                                     <a class="btn btn-info" href="{{$resume->path}}">Download</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" href="{{route('resume.destroy',[$resume])}}">Delete</a>
+                                    <form action="{{route('resume.destroy', $resume)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <td><button class="btn btn-danger">Delete</button></td>
+                                    </form>
                                 </td>
                                 <td>
                                     @if($resume->default)

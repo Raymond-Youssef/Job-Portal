@@ -36,7 +36,7 @@ Route::group(['prefix'=>'profile'],function() {
     Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
     Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
     Route::post('/resume/add',[ResumeController::class,'store'])->name('resume.store'); // Add new resume
-    Route::delete('/resume',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
+    Route::delete('/resume/{resume}',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
 });
 
 

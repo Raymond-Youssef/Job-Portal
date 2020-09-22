@@ -65,7 +65,7 @@
                                         <input type="tel" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="01234567890" value="{{$user->phone}}">
                                     </div>
                                 </li>
-                                <button type="submit" class="btn btn-dark">Edit Profile Information</button>
+                                <button type="submit" class="btn btn-dark">Save Profile</button>
                             </ul>
                         </form>
                         <form method="POST" action="{{route('password.update')}}">
@@ -92,7 +92,7 @@
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm your password">
                                     </div>
                                 </li>
-                                <button type="submit" class="btn btn-dark">Update Password</button>
+                                <button type="submit" class="btn btn-danger">Update Password</button>
                             </ul>
                         </form>
                     </div>

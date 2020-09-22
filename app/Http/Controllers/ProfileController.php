@@ -83,7 +83,6 @@ class ProfileController extends Controller
 
         $user->name = $request->name;
         $user->birth_date = request('birth_date');
-        $user->password = bcrypt($request->password);
         $user->address = request('address');
         $user->phone = request('phone');
         $user->save();

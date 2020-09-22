@@ -29,8 +29,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin;
         });
 
-        
+        Gate::define('update-image', function ($user, $image) {
+            return $user->image_id === $image->id;
+        });
 
-        //
+        Gate::define('update-resume', function ($user, $resume) {
+            return $user->id === $resume->user_id;
+        });
     }
 }
