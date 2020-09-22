@@ -71,7 +71,7 @@
                                     <a class="btn btn-info" href="{{$resume->path}}">Download</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" href="#">Delete</a>
+                                    <a class="btn btn-danger" href="{{route('resume.destroy',[$resume])}}">Delete</a>
                                 </td>
                                 <td>
                                     @if($resume->default)
