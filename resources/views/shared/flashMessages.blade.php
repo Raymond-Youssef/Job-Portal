@@ -31,8 +31,8 @@
 
 
 @if($errors->any())
-    <div class="alert alert-danger container">
+    <div class="alert alert-info alert-block container">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        {{$errors}}
+        Please check the form below for errors
     </div>
 @endif

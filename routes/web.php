@@ -45,6 +45,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Route::resource('/resume',ResumeController::class);
 //Route::resource('/image',ImageController::class);
 
-Route::get('/profile',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
-Route::get('/profile/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
-Route::patch('/profile',[ProfileController::class, 'edit'])->name('profile.update'); // Update the user profile
+
+// Profile Controller
+Route::group(['prefix'=>'profile'],function() {
+    Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
+    Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
+    Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
+});
