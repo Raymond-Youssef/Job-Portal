@@ -18,7 +18,7 @@ $(document).ready(function (){
                 if(data.success) {
                     let path = data.resume_path;
                     let name = data.resume_name;
-                    let li = '<li><a href="'+path+'">'+name+'</a></li>';
+                    let li = '<table><tr><a href="'+path+'">'+name+'</a> <td><a class="btn btn-info" href="{{$resume->path}}">Download</a></td> <td><a class="btn btn-danger" href="#">Delete</a></td></tr></table>';
                     $('#no_resumes').remove();
                     $(li).appendTo('#resumes_list');
                 }
