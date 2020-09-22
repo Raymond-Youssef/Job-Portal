@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 //use App\Http\Controllers\ResumeController;
-//use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -47,4 +47,6 @@ Route::group(['prefix'=>'profile'],function() {
     Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
     Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
+    Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
+    Route::patch('/password/edit',[ProfileController::class, 'passwordEdit'])->name('password.store'); // Change Password
 });

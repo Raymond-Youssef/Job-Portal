@@ -31,9 +31,9 @@
                     {{--Profile Image--}}
                     <div class="col-md-4 intro-img order-last aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
                         @if($image)
-                            <img src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="Profile Picture">
+                            <img src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="Profile Picture" style="height: 18rem; width: auto;">
                         @else
-                            <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail img-fluid">
+                            <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail img-fluid" style="height: 18rem; width: auto;">
                         @endif
                     </div>
                 </div>
