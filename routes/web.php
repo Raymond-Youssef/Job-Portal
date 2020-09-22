@@ -22,29 +22,13 @@ Route::get('/', function () {
     return view('landing-page.master');
 })->name('landing-page');
 
-Route::get('/profile', function (){
-    return view('profile.master');
-})->name('profile');
-
-Route::get('/Application', function (){
-    return view('Application.master');
-})->name('Application');
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Route::get('/test', [ProfileController::class,'index']
-//);
-
-
-
-
-
-//Route::resource('/resume',ResumeController::class);
-
-// Profile Controller
+/*
+|--------------------------------------------------------------------------
+| Profile Routes
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix'=>'profile'],function() {
     Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
@@ -52,3 +36,25 @@ Route::group(['prefix'=>'profile'],function() {
     Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
     Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Test Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/Application', function (){
+    return view('Application.master');
+})->name('Application');
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('/test', [ProfileController::class,'index']
+//);
+
+
+//Route::resource('/resume',ResumeController::class);
