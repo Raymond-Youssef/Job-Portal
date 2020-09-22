@@ -26,6 +26,10 @@ Route::get('/profile', function (){
     return view('profile.master');
 })->name('profile');
 
+Route::get('/Application', function (){
+    return view('Application.master');
+})->name('Application');
+
 
 Auth::routes();
 
