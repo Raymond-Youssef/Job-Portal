@@ -39,8 +39,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //Route::resource('/resume',ResumeController::class);
-//Route::resource('/image',ImageController::class);
-
 
 // Profile Controller
 Route::group(['prefix'=>'profile'],function() {
@@ -48,5 +46,5 @@ Route::group(['prefix'=>'profile'],function() {
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
     Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
     Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
-    Route::patch('/password/edit',[ProfileController::class, 'passwordEdit'])->name('password.store'); // Change Password
+    Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
 });

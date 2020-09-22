@@ -68,7 +68,7 @@
                                 <button type="submit" class="btn btn-dark">Edit Profile Information</button>
                             </ul>
                         </form>
-                        <form method="POST" action="{{route('profile.update')}}">
+                        <form method="POST" action="{{route('password.update')}}">
                             @csrf
                             @method('PATCH')
                             <h3 class="text-primary">Change Password:</h3>
@@ -76,10 +76,11 @@
                                 @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                                <div class="form-group">
-                                    <i class="ion-android-checkmark-circle"></i> <label>Password:</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Enter your password">
-                                </div>
+                                <li>
+                                    <div class="form-group">
+                                        <i class="ion-android-checkmark-circle"></i> <label>Password:</label>
+                                        <input type="password" name="password" class="form-control" placeholder="Enter your password">
+                                    </div>
                                 </li>
 
                                 <li>
@@ -91,8 +92,7 @@
                                         <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm your password">
                                     </div>
                                 </li>
-
-
+                                <button type="submit" class="btn btn-dark">Update Password</button>
                             </ul>
                         </form>
                     </div>
