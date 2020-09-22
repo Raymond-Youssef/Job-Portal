@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="col-xl-10 offset-xl-1">
-            <h1 class="display-4 text-center">{{ Auth::user()->name }}</h1>
+            <h1 class="display-4 text-center">{{ $user->name }}</h1>
             {{-- Personal Information--}}
             <section id="personal-information">
                 <div class="row">
@@ -11,14 +11,14 @@
                         <div class="hero-info">
                             <h3 class="text-primary">Personal Information:</h3>
                             <ul>
-                                <li><span>E-mail: </span> {{ Auth::user()->email }}</li>
-                                @if($birth_date = Auth::user()->birth_date)
+                                <li><span>E-mail: </span> {{ $user->email }}</li>
+                                @if($birth_date = $user->birth_date)
                                     <li><span>Date of Birth: </span>{{ $birth_date }}</li>
                                 @endif
-                                @if($address = Auth::user()->address)
+                                @if($address = $user->address)
                                     <li><span>Address: </span> {{ $address }}</li>
                                 @endif
-                                @if($phone = Auth::user()->phone)
+                                @if($phone = $user->phone)
                                     <li><span>Phone:  </span> {{ $phone }}</li>
                                 @endif
                             </ul>
@@ -41,7 +41,7 @@
 
             <hr>
 
-            @if($coverLetter = Auth::user()->cover_letter)
+            @if($coverLetter = $user->cover_letter)
                 <section id="cover-letter">
                     <h3 class="text-primary">Cover Letter:</h3>
                     <blockquote class="blockquote">
