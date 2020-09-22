@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller
@@ -20,7 +21,7 @@ class ImageController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     /**
      * Store new image
      *
@@ -49,6 +50,7 @@ class ImageController extends Controller
                 $user->save();
                 if($oldImage = Image::find($oldImageId))
                 {
+                    Storage::delete($oldImage->path);
                     $oldImage->delete();
                 }
                 return response()->json([
