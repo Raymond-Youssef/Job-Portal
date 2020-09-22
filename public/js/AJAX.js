@@ -1,38 +1,29 @@
-// function changeImage(user_id) {
-//     let result = confirm("Are you sure you want to delete this user?");
-//     if (result) {
-//         let xhr = new XMLHttpRequest();
-//         xhr.open("POST", "../App/deleteUser.php", true);
-//         let data = {
-//             "id": user_id
-//         };
-//         xhr.setRequestHeader("Content-Type", "application/json");
-//         xhr.onreadystatechange = function () {
-//             if (this.readyState == 4 && this.status == 200) {
-//                 console.log("done");
-//                 let deleted = 'user-id=' + user_id;
-//                 document.getElementById(deleted).remove();
-//             }
-//         };
-//         xhr.send(JSON.stringify(data));
-//     }
-// }
-
-// function changeImage() {
-//     $.ajax({
-//         type:'POST',
-//         url:'/image/store',
-//         data:'_token = <?php echo csrf_token() ?>',
-//         success:function(data) {
-//             $("#msg").html(data.msg);
-//         }
-//     });
-// }
-
-
-// $(document).ready(function (){
-//    $('#image-form').on('submit', function (event){
-//       event.preventDefault();
-//       $.ajax()
-//    });
-// });
+// Resumes
+$(document).ready(function (){
+    $('#resume-form').on('submit', function (event){
+        event.preventDefault();
+        $.ajax({
+            url:'/profile/resume/add',
+            method: 'POST',
+            data: new FormData(this),
+            dataType: 'JSON',
+            contentType: false,
+            cache: false,
+            processData: false,
+            success:function (data)
+            {
+                $('#message').css('display','block');
+                $('#message').html(data.message);
+                $('#message').attr('class',data.class_name);
+                if(data.success) {
+                    let path = data.resume_path;
+                    let name = data.resume_name;
+                    let li = '<li><a href="'+path+'">'+name+'</a></li>';
+                    $('#no_resumes').remove();
+                    $(li).appendTo('#resumes_list');
+                }
+            }
+        })
+    });
+});
+//==================================================================================

@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-//use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ResumeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +35,8 @@ Route::group(['prefix'=>'profile'],function() {
     Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
     Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
     Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
+    Route::post('/resume/add',[ResumeController::class,'store'])->name('resume.store'); // Add new resume
+    Route::delete('/resume',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
 });
 
 

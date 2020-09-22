@@ -3,6 +3,8 @@
     <div class="container">
         <div class="col-xl-10 offset-xl-1">
             <h1 class="display-4 text-center">{{ $user->name }}</h1>
+
+
             {{-- Personal Information--}}
             <section id="personal-information">
                 <div class="row">
@@ -36,11 +38,13 @@
                             <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail img-fluid" style="height: 18rem; width: auto;">
                         @endif
                     </div>
+
                 </div>
-            </section>
+            </section> {{--End Personal Informations--}}
 
             <hr>
 
+            {{--Cover Letter--}}
             @if($coverLetter = $user->cover_letter)
                 <section id="cover-letter">
                     <h3 class="text-primary">Cover Letter:</h3>
@@ -51,20 +55,43 @@
 
                 <hr>
             @endif
+            {{--End Cover Letter --}}
 
             {{-- Resumes --}}
             <section id="resumes">
                 <h3 class="text-primary">Resumes:</h3>
-                <ul>
-                    @foreach($resumes as $resume)
-                        <li>
-                            {{$resume->name}}
-                            @if($resume->default)
-                                <span class="text-info">(Default)</span>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
+                <table class="table table-hover" id="resumes_list">
+                    @if(count($resumes)>0)
+                        @foreach($resumes as $resume)
+                            <tr>
+                                <td>
+                                    {{$resume->name}}
+                                </td>
+                                <td>
+                                    <a class="btn btn-info" href="{{$resume->path}}">Download</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" href="#">Delete</a>
+                                </td>
+                                <td>
+                                    @if($resume->default)
+                                        <span class="text-info">(Default)</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <h5 id="no_resumes">You don't have any resumes uploaded yet</h5>
+                    @endif
+                </table>
+                {{-- Resumes Form --}}
+                <h6 class="text-warning" role="button">Upload a Resume:</h6>
+                <div id="message"></div>
+                <form id="resume-form" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="resume">
+                    <button class="btn btn-info" type="submit">Upload</button>
+                </form>
             </section>
 
         </div>

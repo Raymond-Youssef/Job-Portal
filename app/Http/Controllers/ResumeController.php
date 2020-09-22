@@ -2,57 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Resume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ResumeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-//        $file = Resume::all();
-//        $url = Storage::url($file->path);
-//        echo '<img src="'.asset($file->path).'">';
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('test.resume');
-    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        if($file = $request->file('resume'))
+        $validation = Validator::make($request->all(),[
+            'resume'=> 'required|max:10000|mimes:doc,docx,pdf',
+        ]);
+
+        if($validation->passes())
         {
-            $name = $file->getClientOriginalName();
+            $resume = $request->file('resume');
+            $name = $resume->getClientOriginalName();
             if($path = $request->resume->store('resumes'))
             {
+                $user = Auth::user();
                 $resume = new Resume();
-                $resume->user_id = Auth::id();
                 $resume->name = $name;
                 $resume->path = $path;
+                $resume->user_id = $user->id;
+                if(count($user->resumes)==0) {
+                    $resume->default = true;
+                }
                 $resume->save();
-                return redirect()->back()->with('success','File uploaded Successfully');
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Resume Uploaded Successfully',
+                    'resume_name' => $name,
+                    'resume_path' => asset($resume->path),
+                    'class_name' => 'alert alert-success alert-block container',
+                ]);
+
             }
+
         }
-        return redirect()->back()->with('error','File was NOT uploaded successfully');
+        else
+        {
+            return response()->json([
+                'success' => false,
+                'message' => $validation->errors()->all(),
+                'uploaded_resume' => '',
+                'class_name' => 'alert alert-danger alert-block container'
+            ]);
+        }
 
     }
 
