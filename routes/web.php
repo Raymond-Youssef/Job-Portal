@@ -26,6 +26,9 @@ Route::get('/profile', function (){
     return view('profile.master');
 })->name('profile');
 
+Route::get('/searching', function () {
+    return view('searching.search');
+})->name('searching');
 
 Auth::routes();
 
