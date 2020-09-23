@@ -58,6 +58,18 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <fieldset class="form-group">
+                            <div class="form-group row">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline1">Applicant</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline2">Company</label>
+                                </div>
+                            </div>
+                        </fieldset>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
