@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         $user->birth_date = '1997-11-05';
         $user->address = '4 Mahmoud El-Banna St, Sidi Beshr Bahry, Alexandria';
         $user->phone = '01223555877';
-        $user->image_id = '1';
+//        $user->image_id = '1';
         $user->save();
     }
 }

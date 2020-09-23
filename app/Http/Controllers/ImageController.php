@@ -59,9 +59,7 @@ class ImageController extends Controller
                     'uploaded_image' => asset($image->path),
                     'class_name' => 'alert alert-success alert-block container',
                 ]);
-
             }
-
         }
         else
         {

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Gate;
 class ResumeController extends Controller
 {
 
@@ -22,6 +22,28 @@ class ResumeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+
+    /**
+     * Set the specified resume as default
+     * @param Resume $resume
+     * @return RedirectResponse
+     */
+    public function setDefault(int $id)
+    {
+        $user = Auth::user();
+        $default = Resume::find($id);
+//        Gate::authorize('update-resume',[$user,$default]);
+        $resumes = Resume::all()->where('user_id',$user->id);
+        foreach ($resumes as $resume)
+        {
+            $resume->default = false;
+            $resume->save();
+        }
+        $default->default=true;
+        $default->save();
+        return redirect()->back()->with('success','Default resume updated successfully');
     }
 
     /**
@@ -76,7 +98,7 @@ class ResumeController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resume from storage.
      *
      * @param Resume $resume
      * @return RedirectResponse
@@ -84,6 +106,7 @@ class ResumeController extends Controller
      */
     public function destroy(Resume $resume)
     {
+
         Storage::delete($resume->path);
         if($resume->default)
         {

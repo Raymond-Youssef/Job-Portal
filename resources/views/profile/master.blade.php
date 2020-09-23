@@ -78,6 +78,13 @@
                                     </form>
                                 </td>
                                 <td>
+                                    <form action="{{route('resume.update', $resume->id)}}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <td><button class="btn btn-warning">Set Default</button></td>
+                                    </form>
+                                </td>
+                                <td>
                                     @if($resume->default)
                                         <span class="text-info">(Default)</span>
                                     @endif

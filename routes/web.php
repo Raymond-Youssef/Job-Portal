@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing-page.master');
-})->name('landing-page');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -37,9 +37,19 @@ Route::group(['prefix'=>'profile'],function() {
     Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
     Route::post('/resume/add',[ResumeController::class,'store'])->name('resume.store'); // Add new resume
     Route::delete('/resume/{resume}',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
+    Route::patch('/resume/{resume}', [ResumeController::class,'setDefault'])->name('resume.update'); // Update default resume
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['prefix'=>'application'],function() {
+//    Route::get('/',)
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -52,11 +62,6 @@ Route::get('/Application', function (){
 })->name('Application');
 
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//Route::get('/test', [ProfileController::class,'index']
-//);
 
 
 //Route::resource('/resume',ResumeController::class);

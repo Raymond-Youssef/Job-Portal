@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Resume;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -30,10 +33,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('update-image', function ($user, $image) {
-            return $user->image_id === $image->id;
+            return $user->image->is($image);
         });
 
-        Gate::define('update-resume', function ($user, $resume) {
+        Gate::define('update-resume', function (User $user, Resume $resume) {
             return $user->id === $resume->user_id;
         });
     }

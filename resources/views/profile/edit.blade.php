@@ -144,19 +144,6 @@
                 </div>
             </section>
 
-
-
-            {{--Profile Image--}}
-            {{--            <div class="col-md-4 intro-img order-last aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">--}}
-            {{--                <div>--}}
-            {{--                    @if($image = $user->image)--}}
-            {{--                        <img src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="">--}}
-            {{--                    @else--}}
-            {{--                        <img src="{{asset('assets/img/default_profile.png')}}" alt="" class="img-thumbnail img-fluid">--}}
-            {{--                    @endif--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-
             <hr>
 
             @if($coverLetter = $user->cover_letter)
