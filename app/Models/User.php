@@ -38,6 +38,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $attributes = [
+        'role_id' => 1,
+    ];
+
     /**
      * @return BelongsTo User Image
      */
@@ -67,10 +71,18 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }
 
-    public function assignRole($role)
+
+    /**
+     * Returns the role title of the user
+     * @return string Title
+     */
+    public function roleTitle()
     {
-        return $this->role()->save($role);
+        return $this->role->title;
     }
+
+
+
 
 
 

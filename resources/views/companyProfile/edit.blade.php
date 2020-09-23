@@ -3,18 +3,18 @@
 @section('content')
     <div class="container">
         <div class="col-xl-10 offset-xl-1">
-            <h1 class="display-4 text-center">{{ $user->name }}</h1>
+            <h1 class="display-4 text-center">{{ $company->name }}</h1>
 
 
-            {{-- Personal Information--}}
-            <section id="personal-information">
+            {{-- Company Information--}}
+            <section id="company-information">
                 <div class="row">
                     <div class="col-lg-8">
-                        <form method="POST" action="{{route('profile.update')}}">
+                        <form method="POST" action="{{route('companyProfile.update')}}">
                             @csrf
                             @method('PATCH')
 
-                            <h3 class="text-primary">Personal Information:</h3>
+                            <h3 class="text-primary">Company Information:</h3>
                             <ul style="list-style:none;">
 
                                 <li>
@@ -22,8 +22,8 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="form-group">
-                                        <i class="ion-android-checkmark-circle"></i> <label>Full Name:</label>
-                                        <input type="text" name="name" class="form-control" value="{{$user->name}}" placeholder="Great Person">
+                                        <i class="ion-android-checkmark-circle"></i> <label>Company Name:</label>
+                                        <input type="text" name="name" class="form-control" value="{{$company->name}}" placeholder="Great Person">
                                     </div>
                                 </li>
 
@@ -33,16 +33,16 @@
                                     @enderror
                                     <div class="form-group">
                                         <i class="ion-android-checkmark-circle"></i> <label>Email:</label>
-                                        <input type="email" name="email" class="form-control" value="{{$user->email}}" placeholder="aaaaaa@bbbbb.ccc">
+                                        <input type="email" name="email" class="form-control" value="{{$company->email}}" placeholder="aaaaaa@bbbbb.ccc">
                                     </div>
                                 </li>
                                 <li>
-                                    @error('birth_date')
+                                    @error('creation_date')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="form-group">
-                                        <i class="ion-android-checkmark-circle"></i> <label>Birth Date:</label>
-                                        <input type="date" name="birth_date" class="form-control" value="{{$user->birth_date}}">
+                                        <i class="ion-android-checkmark-circle"></i> <label>creation Date:</label>
+                                        <input type="date" name="creation_date" class="form-control" value="{{$company->birth_date}}">
                                     </div>
                                 </li>
 
@@ -52,7 +52,7 @@
                                     @enderror
                                     <div class="form-group">
                                         <i class="ion-android-checkmark-circle"></i> <label>City:</label>
-                                        <input type="text" name="city" class="form-control" value="{{$user->city}}" placeholder="Toronto">
+                                        <input type="text" name="city" class="form-control" value="{{$company->city}}" placeholder="Toronto">
                                     </div>
                                 </li>
 
@@ -62,7 +62,7 @@
                                     @enderror
                                     <div class="form-group">
                                         <i class="ion-android-checkmark-circle"></i> <label>Country:</label>
-                                        <input type="text" name="country" class="form-control" value="{{$user->country}}" placeholder="Canada">
+                                        <input type="text" name="country" class="form-control" value="{{$company->country}}" placeholder="Canada">
                                     </div>
                                 </li>
 
@@ -72,7 +72,7 @@
                                     @enderror
                                     <div class="form-group">
                                         <i class="ion-android-checkmark-circle"></i> <label>Phone Number:</label>
-                                        <input type="tel" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="01234567890" value="{{$user->phone}}">
+                                        <input type="tel" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="01234567890" value="{{$company->phone}}">
                                     </div>
                                 </li>
                                 <button type="submit" class="btn btn-dark">Save Profile</button>
@@ -111,7 +111,7 @@
 
                     <div class="col-md-4 intro-img order-last aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
                         <div>
-                            @if($image = $user->image)
+                            @if($image = $company->image)
                                 <img id="profile_image" src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="" style="height: 18rem; width: auto;">
                             @else
                                 <img id="profile_image" src="{{asset('assets/img/default_profile.png')}}"  class="img-thumbnail img-fluid" alt="" style="height: 18rem; width: auto;">
@@ -156,7 +156,7 @@
 
             <hr>
 
-            @if($coverLetter = $user->cover_letter)
+            @if($coverLetter = $company->cover_letter)
                 <section id="cover-letter">
                     <h3 class="text-primary">Cover Letter:</h3>
                     <blockquote class="blockquote">

@@ -14,9 +14,6 @@
                             <h3 class="text-primary">Personal Information:</h3>
                             <ul>
                                 <li><span>E-mail: </span> {{ $user->email }}</li>
-                                @if($birth_date = $user->birth_date)
-                                    <li><span>Date of Birth: </span>{{ $birth_date }}</li>
-                                @endif
                                 @if($city = $user->city)
                                     <li><span>City: </span> {{ $city }}</li>
                                 @endif
@@ -25,6 +22,9 @@
                                 @endif
                                 @if($phone = $user->phone)
                                     <li><span>Phone:  </span> {{ $phone }}</li>
+                                @endif
+                                @if($birth_date = $user->birth_date)
+                                    <li><span>Date of Birth: </span>{{ $birth_date }}</li>
                                 @endif
                             </ul>
                         </div>
