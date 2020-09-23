@@ -18,7 +18,7 @@
            </div>
            <div class=" col-md-2  col-sm-4 col-xs-0">
            <img src="https://s3-eu-west-1.amazonaws.com/wuzzuf/files/company_logo/MIX-AND-MATCH-Egypt-55278-1594030738-sm.png" alt="Marketing Specialist" class="js-company-logo-img company-logo-img" alt="..." class="img-thumbnail">
-           <p class="h5 ">companyname</p> 
+           <p class="h5 ">company phpname</p> 
 </div>
 
               </div>

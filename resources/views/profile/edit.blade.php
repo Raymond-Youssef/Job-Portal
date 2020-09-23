@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+</style>
     <div class="container">
         <div class="col-xl-10 offset-xl-1">
             <h1 class="display-4 text-center">{{ $user->name }}</h1>
@@ -68,6 +70,25 @@
                                 <button type="submit" class="btn btn-dark">Edit Profile Information</button>
                             </ul>
                         </form>
+
+                        @if($coverLetter = $user->cover_letter)
+                <section id="cover-letter">
+               
+                
+                <form method="POST" action="{{route('profile.update')}}">
+                
+                <h3 class="text-primary">Cover Letter:</h3>  
+                <div class="form-row">
+                <div class="col-11"> 
+                 <textarea class="form-control"  rows="3" style="margin-left:40px;">{{$coverLetter}}</textarea>
+                 </div>
+  </div>
+                 <br><button type="submit" class="btn btn-dark"  style="margin-left:40px;">Edit Cover Letter</button><br>
+  
+</form>
+                    
+                </section>
+            @endif
                         <form method="POST" action="{{route('password.update')}}">
                             @csrf
                             @method('PATCH')
@@ -159,14 +180,7 @@
 
             <hr>
 
-            @if($coverLetter = $user->cover_letter)
-                <section id="cover-letter">
-                    <h3 class="text-primary">Cover Letter:</h3>
-                    <blockquote class="blockquote">
-                        <p>{{$coverLetter}}</p>
-                    </blockquote>
-                </section>
-            @endif
+            
 
         </div>
     </div>
