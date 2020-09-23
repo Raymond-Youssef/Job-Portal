@@ -53,6 +53,7 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 //'email' => 'required|email|unique:users',
+                'job_title' => 'nullable',
                 'birth_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
@@ -64,6 +65,7 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
+                'job_title' => 'nullable',
                 'birth_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
@@ -75,6 +77,7 @@ class ProfileController extends Controller
 
         $user->name = $request->name;
         $user->birth_date = request('birth_date');
+        $user->job_title = request('job_title');
         $user->city = request('city');
         $user->country = request('country');
         $user->phone = request('phone');
@@ -85,7 +88,7 @@ class ProfileController extends Controller
 
 
     /**
-     * Update Profile Information in storage.
+     * Update Password in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -99,7 +102,7 @@ class ProfileController extends Controller
         ]);
         $user->password = bcrypt($request->password);
         $user->save();
-        return redirect()->back()->with(['success' => 'Password updated successfully!']);
+        return redirect()->back()->with(['success' => 'Password Updated Successfully!']);
     }
 
 }

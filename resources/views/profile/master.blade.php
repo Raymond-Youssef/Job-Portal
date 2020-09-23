@@ -14,6 +14,9 @@
                             <h3 class="text-primary">Personal Information:</h3>
                             <ul>
                                 <li><span>E-mail: </span> {{ $user->email }}</li>
+                                @if($job_title = $user->job_title)
+                                    <li><span>Job Title: </span> {{ $job_title }}</li>
+                                @endif
                                 @if($city = $user->city)
                                     <li><span>City: </span> {{ $city }}</li>
                                 @endif

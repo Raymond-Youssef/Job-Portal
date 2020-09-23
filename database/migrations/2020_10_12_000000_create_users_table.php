@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
         $user->save();
 
         $company = new Role();
-        $user->title = 'company';
+        $company->title = 'company';
         $company->save();
 
         $admin = new Role();

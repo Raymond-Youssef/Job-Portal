@@ -2,90 +2,102 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display Admin Profile
      *
      * @return View
      */
     public function index()
     {
-        $company = Auth::user();
-        $image = $company->image;
-        return view('companyProfile.master',[
-            'company'=>$company,
+        $admin = Auth::user();
+        $image = $admin->image;
+        return view('admin-profile.master',[
+            'admin'=>$admin,
             'image' => $image]);
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Show the form for editing profile.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function edit()
     {
-        //
+        $admin = Auth::user();
+        return view('admin-profile.edit',['admin'=>$admin]);
+    }
+
+
+    /**
+     * Update Admin Profile Information in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
+     */
+    public function update(Request $request)
+    {
+        $admin = Auth::user();
+        if($admin->email == request('email'))
+        {
+            $this->validate($request, [
+                'name' => 'required',
+                //'email' => 'required|email|unique:users',
+                'creation_date' => 'nullable|date',
+                'city' => 'nullable',
+                'country' => 'nullable',
+                'phone' => 'nullable|digits:11',
+            ]);
+        }
+        else
+        {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'creation_date' => 'nullable|date',
+                'city' => 'nullable',
+                'country' => 'nullable',
+                'phone' => 'nullable|digits:11',
+            ]);
+            $admin->email = $request->email;
+        }
+
+
+        $admin->name = $request->name;
+        $admin->birth_date = request('creation_date');
+        $admin->city = request('city');
+        $admin->country = request('country');
+        $admin->phone = request('phone');
+        $admin->save();
+
+        return redirect()->route('admin-profile.index')->with(['success' => 'Admin Profile Edited Successfully']);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Update Password in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function updatePassword(Request $request)
     {
-        //
+        $admin = Auth::user();
+        $this->validate($request, [
+            'password' => 'required|confirmed|min:8'
+        ]);
+        $admin->password = bcrypt($request->password);
+        $admin->save();
+        return redirect()->back()->with(['success' => 'Password Updated Successfully!']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(admin $admin)
-    {
-        //
-    }
 }

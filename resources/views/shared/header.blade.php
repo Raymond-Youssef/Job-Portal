@@ -16,13 +16,26 @@
                 </li>
                 <li class="drop-down"><a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}</a>
-                    <ul>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('profile.index') }}">
-                                {{ __('Profile') }}
-                            </a>
-                        </li>
-
+                    <ul> {{-- Profiles depending on user types --}}
+                        @if(Auth::user()->role->title=='user')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                    {{ __('Profile') }}
+                                </a>
+                            </li>
+                        @elseif(Auth::user()->role->title=='company')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('company-profile.index') }}">
+                                    {{ __('Company Profile') }}
+                                </a>
+                            </li>
+                        @elseif(Auth::user()->role->title=='admin')
+                            <li>
+                                <a class="dropdown-item" href="{{ route('admin-profile.index') }}">
+                                    {{ __('Admin Profile') }}
+                                </a>
+                            </li>
+                        @endif
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

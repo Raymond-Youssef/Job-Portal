@@ -30,7 +30,7 @@
                             </ul>
                         </div>
                         <div style="position: absolute; bottom: 2rem; right: 2rem;">
-                            <a href="{{ route('companyProfile.edit') }}"  class="btn btn-info" role="button">Edit Company Information</a>
+                            <a href="{{ route('company-profile.edit') }}"  class="btn btn-info" role="button">Edit Company Information</a>
                         </div>
                     </div>
 
