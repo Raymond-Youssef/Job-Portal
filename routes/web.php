@@ -22,6 +22,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+/*
+|--------------------------------------------------------------------------
+| Main Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
@@ -29,6 +35,8 @@ Auth::routes();
 Route::get('/searching', function () {
     return view('searching.search');
 })->name('searching');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,14 +46,15 @@ Route::get('/searching', function () {
 Route::group(['prefix'=>'profile','middleware'=>'UserMiddleware'],function() {
     Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
-    Route::patch('/',[ProfileController::class, 'update'])->name('profile.update')->withoutMiddleware('UserMiddleware'); // Update the user profile
+    Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
     Route::patch('/password/update',[ProfileController::class, 'updatePassword'])->name('password.update'); // Change Password
     Route::post('/resume/add',[ResumeController::class,'store'])->name('resume.store'); // Add new resume
     Route::delete('/resume/{resume}',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
     Route::patch('/resume/{resume}', [ResumeController::class,'setDefault'])->name('resume.update'); // Update default resume
 });
 
-Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
+
+
 
 
 /*
@@ -61,6 +70,7 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 });
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Admins Routes
@@ -74,6 +84,13 @@ Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],functi
 });
 
 
+
+/*
+|--------------------------------------------------------------------------
+| Images Processing
+|--------------------------------------------------------------------------
+*/
+Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
 
 
 
