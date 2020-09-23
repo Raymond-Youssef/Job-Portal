@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -21,12 +21,11 @@ class ImageController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Store new image
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -59,19 +58,13 @@ class ImageController extends Controller
                     'uploaded_image' => asset($image->path),
                     'class_name' => 'alert alert-success alert-block container',
                 ]);
-
             }
-
         }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => $validation->errors()->all(),
-                'uploaded_image' => '',
-                'class_name' => 'alert alert-danger alert-block container'
-            ]);
-        }
-
+        return response()->json([
+            'success' => false,
+            'message' => $validation->errors()->all(),
+            'uploaded_image' => '',
+            'class_name' => 'alert alert-danger alert-block container'
+        ]);
     }
 }

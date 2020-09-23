@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Company;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+class CompanyProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,28 +18,28 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $resumes = $user->resumes;
-        $image = $user->image;
-        return view('profile.master',[
-            'user'=>$user,
-            'resumes'=>$resumes,
+        $company = Auth::user();
+        $image = $company->image;
+        return view('company-profile.master',[
+            'company'=>$company,
             'image' => $image]);
     }
 
 
     /**
      * Show the form for editing profile.
+     *
      * @return View
      */
     public function edit()
     {
-        $user = Auth::user();
-        return view('profile.edit',['user'=>$user]);
+        $company = Auth::user();
+        return view('company-profile.edit',['company'=>$company]);
     }
 
+
     /**
-     * Update Profile Information in storage.
+     * Update Company Profile Information in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -47,14 +47,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = Auth::user();
-        if($user->email == request('email'))
+        $company = Auth::user();
+        if($company->email == request('email'))
         {
             $this->validate($request, [
                 'name' => 'required',
                 //'email' => 'required|email|unique:users',
-                'job_title' => 'nullable',
-                'birth_date' => 'nullable|date',
+                'creation_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
@@ -65,27 +64,24 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
-                'job_title' => 'nullable',
-                'birth_date' => 'nullable|date',
+                'creation_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
             ]);
-            $user->email = $request->email;
+            $company->email = $request->email;
         }
 
 
-        $user->name = $request->name;
-        $user->birth_date = request('birth_date');
-        $user->job_title = request('job_title');
-        $user->city = request('city');
-        $user->country = request('country');
-        $user->phone = request('phone');
-        $user->save();
+        $company->name = $request->name;
+        $company->birth_date = request('creation_date');
+        $company->city = request('city');
+        $company->country = request('country');
+        $company->phone = request('phone');
+        $company->save();
 
-        return redirect()->route('profile.index')->with(['success' => 'Profile Edited Successfully']);
+        return redirect()->route('company-profile.index')->with(['success' => 'Company Profile Edited Successfully']);
     }
-
 
     /**
      * Update Password in storage.
@@ -96,13 +92,12 @@ class ProfileController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $user = Auth::user();
+        $company = Auth::user();
         $this->validate($request, [
             'password' => 'required|confirmed|min:8'
         ]);
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $company->password = bcrypt($request->password);
+        $company->save();
         return redirect()->back()->with(['success' => 'Password Updated Successfully!']);
     }
-
 }

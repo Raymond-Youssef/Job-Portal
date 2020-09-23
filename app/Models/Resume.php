@@ -12,4 +12,12 @@ class Resume extends Model
     protected $fillable = [
         'name','path','default'
     ];
+
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

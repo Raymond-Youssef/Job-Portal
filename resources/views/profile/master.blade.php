@@ -14,14 +14,20 @@
                             <h3 class="text-primary">Personal Information:</h3>
                             <ul>
                                 <li><span>E-mail: </span> {{ $user->email }}</li>
-                                @if($birth_date = $user->birth_date)
-                                    <li><span>Date of Birth: </span>{{ $birth_date }}</li>
+                                @if($job_title = $user->job_title)
+                                    <li><span>Job Title: </span> {{ $job_title }}</li>
                                 @endif
-                                @if($address = $user->address)
-                                    <li><span>Address: </span> {{ $address }}</li>
+                                @if($city = $user->city)
+                                    <li><span>City: </span> {{ $city }}</li>
+                                @endif
+                                @if($country = $user->country)
+                                    <li><span>Country: </span> {{ $country }}</li>
                                 @endif
                                 @if($phone = $user->phone)
                                     <li><span>Phone:  </span> {{ $phone }}</li>
+                                @endif
+                                @if($birth_date = $user->birth_date)
+                                    <li><span>Date of Birth: </span>{{ $birth_date }}</li>
                                 @endif
                             </ul>
                         </div>
@@ -71,7 +77,18 @@
                                     <a class="btn btn-info" href="{{$resume->path}}">Download</a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" href="{{route('resume.destroy',[$resume])}}">Delete</a>
+                                    <form action="{{route('resume.destroy', $resume)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{route('resume.update', $resume->id)}}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-warning">Set Default</button>
+                                    </form>
                                 </td>
                                 <td>
                                     @if($resume->default)

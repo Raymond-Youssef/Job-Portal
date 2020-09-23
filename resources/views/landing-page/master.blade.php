@@ -49,7 +49,7 @@
           <input type ="text" class="search-field job" placeholder="job title,company name..">
           <input type ="text" class="search-field location" placeholder="location">
           <!-- <button class="search-btn" type= "button">Search</button>  -->
-          <a href="#about" class="btn-get-started scrollto">search</a>
+          <a href="{{ route('searching') }}" class="btn-get-started scrollto">search</a>
           </form>
           </div>
 

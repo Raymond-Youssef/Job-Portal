@@ -2,44 +2,43 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ProfileController extends Controller
+class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display Admin Profile
      *
      * @return View
      */
     public function index()
     {
-        $user = Auth::user();
-        $resumes = $user->resumes;
-        $image = $user->image;
-        return view('profile.master',[
-            'user'=>$user,
-            'resumes'=>$resumes,
+        $admin = Auth::user();
+        $image = $admin->image;
+        return view('admin-profile.master',[
+            'admin'=>$admin,
             'image' => $image]);
     }
 
 
     /**
      * Show the form for editing profile.
+     *
      * @return View
      */
     public function edit()
     {
-        $user = Auth::user();
-        return view('profile.edit',['user'=>$user]);
+        $admin = Auth::user();
+        return view('admin-profile.edit',['admin'=>$admin]);
     }
 
+
     /**
-     * Update Profile Information in storage.
+     * Update Admin Profile Information in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -47,14 +46,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = Auth::user();
-        if($user->email == request('email'))
+        $admin = Auth::user();
+        if($admin->email == request('email'))
         {
             $this->validate($request, [
                 'name' => 'required',
                 //'email' => 'required|email|unique:users',
-                'job_title' => 'nullable',
-                'birth_date' => 'nullable|date',
+                'creation_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
@@ -65,27 +63,24 @@ class ProfileController extends Controller
             $this->validate($request, [
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
-                'job_title' => 'nullable',
-                'birth_date' => 'nullable|date',
+                'creation_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
             ]);
-            $user->email = $request->email;
+            $admin->email = $request->email;
         }
 
 
-        $user->name = $request->name;
-        $user->birth_date = request('birth_date');
-        $user->job_title = request('job_title');
-        $user->city = request('city');
-        $user->country = request('country');
-        $user->phone = request('phone');
-        $user->save();
+        $admin->name = $request->name;
+        $admin->birth_date = request('creation_date');
+        $admin->city = request('city');
+        $admin->country = request('country');
+        $admin->phone = request('phone');
+        $admin->save();
 
-        return redirect()->route('profile.index')->with(['success' => 'Profile Edited Successfully']);
+        return redirect()->route('admin-profile.index')->with(['success' => 'Admin Profile Edited Successfully']);
     }
-
 
     /**
      * Update Password in storage.
@@ -96,12 +91,12 @@ class ProfileController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $user = Auth::user();
+        $admin = Auth::user();
         $this->validate($request, [
             'password' => 'required|confirmed|min:8'
         ]);
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $admin->password = bcrypt($request->password);
+        $admin->save();
         return redirect()->back()->with(['success' => 'Password Updated Successfully!']);
     }
 

@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
-class ImageSeeder extends Seeder
+use App\Models\Job;
+class JobSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,8 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Job::factory()
+            ->times(500)
+            ->create();
     }
 }

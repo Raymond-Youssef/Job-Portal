@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -13,7 +15,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -22,7 +23,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
@@ -38,13 +38,52 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $attributes = [
+        'role_id' => 1,
+    ];
 
+    /**
+     * @return BelongsTo User Image
+     */
     public function image()
     {
         return $this->belongsTo('App\Models\Image');
     }
+
+    /**
+     * @return HasMany User Resumes
+     */
     public function resumes()
     {
         return $this->hasMany('App\Models\Resume');
     }
+
+    public function saveResume($resume)
+    {
+        return $this->resumes()->save($resume);
+    }
+
+    /**
+     * @return BelongsTo User Role
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
+
+
+    /**
+     * Returns the role title of the user
+     * @return string Title
+     */
+    public function roleTitle()
+    {
+        return $this->role->title;
+    }
+
+
+
+
+
+
 }
