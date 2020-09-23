@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Resume;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Gate;
 class ResumeController extends Controller
 {
 
@@ -27,22 +27,23 @@ class ResumeController extends Controller
 
     /**
      * Set the specified resume as default
-     * @param Resume $resume
+     * @param int $id
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function setDefault(int $id)
     {
         $user = Auth::user();
-        $default = Resume::find($id);
-//        Gate::authorize('update-resume',[$user,$default]);
+        $defaultResume = Resume::findOrFail($id);
+        $this->authorize($defaultResume);
         $resumes = Resume::all()->where('user_id',$user->id);
         foreach ($resumes as $resume)
         {
             $resume->default = false;
             $resume->save();
         }
-        $default->default=true;
-        $default->save();
+        $defaultResume->default=true;
+        $defaultResume->save();
         return redirect()->back()->with('success','Default resume updated successfully');
     }
 
@@ -106,7 +107,7 @@ class ResumeController extends Controller
      */
     public function destroy(Resume $resume)
     {
-
+        $this->authorize('destroy',$resume);
         Storage::delete($resume->path);
         if($resume->default)
         {

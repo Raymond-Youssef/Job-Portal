@@ -47,12 +47,22 @@
                                 </li>
 
                                 <li>
-                                    @error('address')
+                                    @error('city')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <div class="form-group">
-                                        <i class="ion-android-checkmark-circle"></i> <label>Address:</label>
-                                        <input type="text" name="address" class="form-control" value="{{$user->address}}" placeholder="90 Sherlock st, Mustafa Kamel WA Bolkli, First Al Raml, Alexandria">
+                                        <i class="ion-android-checkmark-circle"></i> <label>City:</label>
+                                        <input type="text" name="city" class="form-control" value="{{$user->city}}" placeholder="90 Sherlock st, Mustafa Kamel WA Bolkli, First Al Raml, Alexandria">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    @error('country')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <div class="form-group">
+                                        <i class="ion-android-checkmark-circle"></i> <label>Country:</label>
+                                        <input type="text" name="country" class="form-control" value="{{$user->country}}" placeholder="90 Sherlock st, Mustafa Kamel WA Bolkli, First Al Raml, Alexandria">
                                     </div>
                                 </li>
 

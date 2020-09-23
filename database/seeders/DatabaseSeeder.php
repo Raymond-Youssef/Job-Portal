@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Job;
 use App\Models\Resume;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ImageSeeder::class,
             UserSeeder::class,
-            ResumeSeeder::class,
+            JobSeeder::class,
+            ApplicationSeeder::class,
         ]);
     }
 }

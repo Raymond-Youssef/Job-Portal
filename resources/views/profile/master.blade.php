@@ -17,8 +17,11 @@
                                 @if($birth_date = $user->birth_date)
                                     <li><span>Date of Birth: </span>{{ $birth_date }}</li>
                                 @endif
-                                @if($address = $user->address)
-                                    <li><span>Address: </span> {{ $address }}</li>
+                                @if($city = $user->city)
+                                    <li><span>City: </span> {{ $city }}</li>
+                                @endif
+                                @if($country = $user->country)
+                                    <li><span>Country: </span> {{ $country }}</li>
                                 @endif
                                 @if($phone = $user->phone)
                                     <li><span>Phone:  </span> {{ $phone }}</li>
@@ -72,16 +75,16 @@
                                 </td>
                                 <td>
                                     <form action="{{route('resume.destroy', $resume)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                        <td><button class="btn btn-danger">Delete</button></td>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
                                 <td>
                                     <form action="{{route('resume.update', $resume->id)}}" method="POST">
                                         @csrf
                                         @method('PATCH')
-                                        <td><button class="btn btn-warning">Set Default</button></td>
+                                        <button class="btn btn-warning">Set Default</button>
                                     </form>
                                 </td>
                                 <td>

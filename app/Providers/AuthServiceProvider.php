@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Resume;
 use App\Models\User;
+use App\Policies\ResumesPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Resume::class => ResumesPolicy::class,
     ];
 
     /**
@@ -28,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+
         Gate::define('edit-settings', function ($user) {
             return $user->isAdmin;
         });
@@ -36,8 +38,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->image->is($image);
         });
 
-        Gate::define('update-resume', function (User $user, Resume $resume) {
-            return $user->id === $resume->user_id;
-        });
+//        Gate::define('update-resume', function (User $user, Resume $resume) {
+//            return $resume->user->is($user);
+//        });
     }
 }

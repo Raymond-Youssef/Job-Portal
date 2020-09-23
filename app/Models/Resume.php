@@ -29,5 +29,15 @@ class Resume extends Model
      * @var bool|mixed
      */
     private $default;
+    /**
+     * @var mixed
+     */
+
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
 }

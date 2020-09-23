@@ -64,7 +64,8 @@ class ProfileController extends Controller
                 'name' => 'required',
 //                'email' => 'required|email|unique:users',
                 'birth_date' => 'nullable|date',
-                'address' => 'nullable',
+                'city' => 'nullable',
+                'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
             ]);
         }
@@ -74,7 +75,8 @@ class ProfileController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users',
                 'birth_date' => 'nullable|date',
-                'address' => 'nullable',
+                'city' => 'nullable',
+                'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
             ]);
             $user->email = $request->email;
@@ -83,7 +85,8 @@ class ProfileController extends Controller
 
         $user->name = $request->name;
         $user->birth_date = request('birth_date');
-        $user->address = request('address');
+        $user->city = request('city');
+        $user->country = request('country');
         $user->phone = request('phone');
         $user->save();
 

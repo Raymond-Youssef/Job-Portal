@@ -16,12 +16,18 @@ class UserSeeder extends Seeder
     {
         $user = new User();
         $user->name = 'Raymond Youssef';
+        $user->job_title = 'Software Engineer';
         $user->password = bcrypt('password');
         $user->email = 'rimonomega@gmail.com';
         $user->birth_date = '1997-11-05';
-        $user->address = '4 Mahmoud El-Banna St, Sidi Beshr Bahry, Alexandria';
+        $user->city = 'Alexandria';
+        $user->country = 'Egypt';
         $user->phone = '01223555877';
-//        $user->image_id = '1';
+        $user->role_id = 3;
         $user->save();
+
+        User::factory()
+            ->times(100)
+            ->create();
     }
 }
