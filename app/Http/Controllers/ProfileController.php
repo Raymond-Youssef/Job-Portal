@@ -3,27 +3,18 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @return View
      */
     public function index()
     {
@@ -38,10 +29,8 @@ class ProfileController extends Controller
 
 
     /**
-     * Show the form for editing profile resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * Show the form for editing profile.
+     * @return View
      */
     public function edit()
     {
@@ -52,8 +41,9 @@ class ProfileController extends Controller
     /**
      * Update Profile Information in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function update(Request $request)
     {
@@ -62,7 +52,7 @@ class ProfileController extends Controller
         {
             $this->validate($request, [
                 'name' => 'required',
-//                'email' => 'required|email|unique:users',
+                //'email' => 'required|email|unique:users',
                 'birth_date' => 'nullable|date',
                 'city' => 'nullable',
                 'country' => 'nullable',
@@ -97,8 +87,9 @@ class ProfileController extends Controller
     /**
      * Update Profile Information in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function updatePassword(Request $request)
     {
@@ -108,7 +99,6 @@ class ProfileController extends Controller
         ]);
         $user->password = bcrypt($request->password);
         $user->save();
-
         return redirect()->back()->with(['success' => 'Password updated successfully!']);
     }
 

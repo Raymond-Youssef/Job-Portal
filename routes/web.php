@@ -32,7 +32,7 @@ Route::get('/searching', function () {
 | Profile Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix'=>'profile'],function() {
+Route::group(['prefix'=>'profile', 'middleware'=>'auth'],function() {
     Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
     Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
@@ -42,7 +42,6 @@ Route::group(['prefix'=>'profile'],function() {
     Route::delete('/resume/{resume}',[ResumeController::class, 'destroy'])->name('resume.destroy'); // Remove a resume
     Route::patch('/resume/{resume}', [ResumeController::class,'setDefault'])->name('resume.update'); // Update default resume
 });
-
 
 /*
 |--------------------------------------------------------------------------

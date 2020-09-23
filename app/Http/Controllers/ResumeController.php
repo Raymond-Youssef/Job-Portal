@@ -13,18 +13,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 class ResumeController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * Set the specified resume as default
      * @param int $id
@@ -48,7 +36,7 @@ class ResumeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store the new resume in storage
      *
      * @param Request $request
      * @return JsonResponse
@@ -69,11 +57,10 @@ class ResumeController extends Controller
                 $resume = new Resume();
                 $resume->name = $name;
                 $resume->path = $path;
-                $resume->user_id = $user->id;
                 if(count($user->resumes)==0) {
                     $resume->default = true;
                 }
-                $resume->save();
+                $user->saveResume($resume);
                 return response()->json([
                     'success' => true,
                     'message' => 'Resume Uploaded Successfully',
@@ -85,16 +72,12 @@ class ResumeController extends Controller
             }
 
         }
-        else
-        {
-            return response()->json([
-                'success' => false,
-                'message' => $validation->errors()->all(),
-                'uploaded_resume' => '',
-                'class_name' => 'alert alert-danger alert-block container'
-            ]);
-        }
-
+        return response()->json([
+            'success' => false,
+            'message' => $validation->errors()->all(),
+            'uploaded_resume' => '',
+            'class_name' => 'alert alert-danger alert-block container'
+        ]);
     }
 
 

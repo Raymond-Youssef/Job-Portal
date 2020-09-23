@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Resume');
     }
 
+    public function saveResume($resume)
+    {
+        return $this->resumes()->save($resume);
+    }
+
     /**
      * @return BelongsTo User Role
      */
@@ -61,6 +66,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Role');
     }
+
+    public function assignRole($role)
+    {
+        return $this->role()->save($role);
+    }
+
 
 
 }
