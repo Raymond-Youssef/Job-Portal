@@ -24,6 +24,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
+Route::get('/searching', function () {
+    return view('searching.search');
+})->name('searching');
 /*
 |--------------------------------------------------------------------------
 | Profile Routes
@@ -47,7 +50,7 @@ Route::group(['prefix'=>'profile'],function() {
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix'=>'application'],function() {
-//    Route::get('/',)
+    Route::get('/',);
 
 });
 

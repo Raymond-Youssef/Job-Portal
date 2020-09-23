@@ -18,8 +18,7 @@ $(document).ready(function (){
                 if(data.success) {
                     window.setTimeout(function (){
                         location.reload();
-                        }, 6000);
-
+                        }, 2000);
                 }
             }
         })
