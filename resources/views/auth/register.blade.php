@@ -65,20 +65,23 @@
                         <fieldset class="form-group">
                             <div class="form-group row">
                                 <label for="role" class="col-md-4 text-md-right">{{ __('Account Type:') }}</label>
-                                <div class="ml-4 text-md-right">
+                                <div class="col-md-6 text-md-right">
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="applicant-radio" name="role" class="custom-control-input" value="user">
                                         <label class="custom-control-label" for="applicant-radio">Applicant</label>
                                     </div>
-                                    <div class="custom-control ml-4 custom-radio custom-control-inline">
+                                    <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="company-radio" name="role" class="custom-control-input" value="company">
                                         <label class="custom-control-label" for="company-radio">Company</label>
                                     </div>
                                 </div>
-                                @error('role')
-                                <span class="alert-danger" role="alert"><strong>{{ $message }}</strong></span>
-                                @enderror
                             </div>
+                            @error('role')
+                            <div class="alert alert-danger alert-block container">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror
                         </fieldset>
                         {{-- End Radio Buttons --}}
 
