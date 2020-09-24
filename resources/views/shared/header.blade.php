@@ -3,7 +3,10 @@
         <h1 class="logo mr-auto"><a href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a></h1>
         <nav class="main-nav d-none d-lg-block">
             <ul>
-                <li class="active"><a href="{{ route('home') }}">Home</a></li>
+
+                <li class="active">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
                 {{--Guest Rotues--}}
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -46,7 +49,7 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Log-out') }} <span data-feather="log-out"></span>
                             </a>
                         </li>
                         <li>
@@ -60,4 +63,5 @@
             @endguest
         </nav>
     </div>
+    <script src="{{asset('js/dashboard.js')}}"></script>
 </header>

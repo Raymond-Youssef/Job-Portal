@@ -43,7 +43,7 @@ Route::get('/searching', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Profile Routes
+| Applicants Routes
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix'=>'profile'],function() {
@@ -90,7 +90,7 @@ Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],functi
 Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function(){
 
     Route::get('/', function() {
-        return view('dashboard.master');
+        return view('dashboard.index');
     })->name('dashboard')->middleware('auth');
 
     Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);

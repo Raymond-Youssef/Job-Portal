@@ -52,6 +52,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Image');
     }
 
+
     /**
      * @return HasMany User Resumes
      */
@@ -70,22 +71,9 @@ class User extends Authenticatable
     }
 
 
-    /**
-     * Returns the role title of the user
-     * @return string Title
-     */
-    public function roleTitle()
-    {
-        return $this->role->title;
-    }
-
-    public function saveResume($resume)
+    public function saveResume(Resume $resume)
     {
         return $this->resumes()->save($resume);
     }
-
-
-
-
 
 }

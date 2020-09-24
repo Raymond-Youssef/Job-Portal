@@ -50,53 +50,13 @@ class ResumeController extends Controller
         return redirect()->back()->with('success','Default resume updated successfully');
     }
 
-    public function adminStore(Request $request)
-    {
-        $this->authorize('update-applicants-resumes');
-        $validation = Validator::make($request->all(),[
-            'resume'=> 'required|max:10000|mimes:doc,docx,pdf',
-        ]);
-
-        if($validation->passes())
-        {
-            $resume = $request->file('resume');
-            $name = $resume->getClientOriginalName();
-            if($path = $request->resume->store('resumes'))
-            {
-                $resume = new Resume();
-                $resume->name = $name;
-                $resume->path = $path;
-                $applicant = Applicant::find($request->user_id);
-                if(count($applicant->resumes)==0)
-                {
-                    $resume->default = true;
-                }
-                $applicant->saveResume($resume);
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Resume Uploaded Successfully',
-                    'resume_name' => $name,
-                    'resume_path' => asset($resume->path),
-                    'class_name' => 'alert alert-success alert-block container',
-                ]);
-
-
-            }
-        }
-        return response()->json([
-            'success' => false,
-            'message' => $validation->errors()->all(),
-            'uploaded_resume' => '',
-            'class_name' => 'alert alert-danger alert-block container'
-        ]);
-
-    }
 
     /**
      * Store the new resume in storage
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
@@ -106,18 +66,28 @@ class ResumeController extends Controller
 
         if($validation->passes())
         {
+            $currentUser = Auth::user();
             $resume = $request->file('resume');
             $name = $resume->getClientOriginalName();
+            if($currentUser->role->title=='admin' && isset($request->applicant_id))
+            {
+                $targetApplicant = Applicant::find($request->applicant_id);
+            }
+            else
+            {
+                $targetApplicant = Auth::user();
+            }
+            $this->authorize('store-resume',$targetApplicant);
             if($path = $request->resume->store('resumes'))
             {
-                $user = Auth::user();
                 $resume = new Resume();
                 $resume->name = $name;
                 $resume->path = $path;
-                if(count($user->resumes)==0) {
+                if(count($targetApplicant->resumes)==0)
+                {
                     $resume->default = true;
                 }
-                $user->saveResume($resume);
+                $targetApplicant->saveResume($resume);
                 return response()->json([
                     'success' => true,
                     'message' => 'Resume Uploaded Successfully',
@@ -125,9 +95,7 @@ class ResumeController extends Controller
                     'resume_path' => asset($resume->path),
                     'class_name' => 'alert alert-success alert-block container',
                 ]);
-
             }
-
         }
         return response()->json([
             'success' => false,

@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Resume;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Resume;
 
-class Applicant extends Model
+class Applicant extends User
 {
     use HasFactory;
 
@@ -39,6 +39,11 @@ class Applicant extends Model
         return $this->belongsTo('App\Models\Image');
     }
 
+    public function saveResume(Resume $resume)
+    {
+        return $this->resumes()->save($resume);
+    }
+
 
 
     public function resumes()
@@ -46,9 +51,4 @@ class Applicant extends Model
         return $this->hasMany('App\Models\Resume','user_id');
     }
 
-
-    public function saveResume(Resume $resume)
-    {
-        return $this->resumes()->save($resume);
-    }
 }
