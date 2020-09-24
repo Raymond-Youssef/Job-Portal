@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Resume;
 
-class Applicant extends Model
+class Applicant extends User
 {
     use HasFactory;
 
@@ -47,8 +47,8 @@ class Applicant extends Model
     }
 
 
-    public function saveResume(Resume $resume)
-    {
-        return $this->resumes()->save($resume);
-    }
+//    public function saveResume(Resume $resume)
+//    {
+//        return $this->resumes()->save($resume);
+//    }
 }

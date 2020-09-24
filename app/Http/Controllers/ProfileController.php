@@ -20,22 +20,22 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('UserMiddleware');
+        $this->middleware('ApplicantMiddleware');
     }
 
 
     /**
-     * Display a listing of the resource.
+     * Display Applicant profile
      *
      * @return View
      */
     public function index()
     {
-        $user = Auth::user();
-        $resumes = $user->resumes;
-        $image = $user->image;
-        return view('profile.master',[
-            'user'=>$user,
+        $applicant = Auth::user();
+        $resumes = $applicant->resumes;
+        $image = $applicant->image;
+        return view('profile.index',[
+            'user'=>$applicant,
             'resumes'=>$resumes,
             'image' => $image]);
     }
@@ -47,8 +47,8 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user();
-        return view('profile.edit',['user'=>$user]);
+        $applicant = Auth::user();
+        return view('profile.edit',['user'=>$applicant]);
     }
 
     /**
@@ -60,8 +60,8 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = Auth::user();
-        if($user->email == request('email'))
+        $applicant = Auth::user();
+        if($applicant->email == request('email'))
         {
             $this->validate($request, [
                 'name' => 'required|string|max:255',
@@ -84,17 +84,17 @@ class ProfileController extends Controller
                 'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
             ]);
-            $user->email = $request->email;
+            $applicant->email = $request->email;
         }
 
 
-        $user->name = $request->name;
-        $user->birth_date = request('birth_date');
-        $user->job_title = request('job_title');
-        $user->city = request('city');
-        $user->country = request('country');
-        $user->phone = request('phone');
-        $user->save();
+        $applicant->name = $request->name;
+        $applicant->birth_date = request('birth_date');
+        $applicant->job_title = request('job_title');
+        $applicant->city = request('city');
+        $applicant->country = request('country');
+        $applicant->phone = request('phone');
+        $applicant->save();
 
         return redirect()->route('profile.index')->with(['success' => 'Profile Edited Successfully']);
     }
@@ -109,12 +109,12 @@ class ProfileController extends Controller
      */
     public function updatePassword(Request $request)
     {
-        $user = Auth::user();
+        $applicant = Auth::user();
         $this->validate($request, [
             'password' => 'required|confirmed|min:8|string'
         ]);
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $applicant->password = bcrypt($request->password);
+        $applicant->save();
         return redirect()->back()->with(['success' => 'Password Updated Successfully!']);
     }
 

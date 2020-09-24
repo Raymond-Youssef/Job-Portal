@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Applicant;
 use App\Models\Resume;
 use App\Models\User;
 use App\Policies\ResumesPolicy;
@@ -38,9 +39,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->image->is($image);
         });
 
-//        Gate::define('update-resume', function (User $user, Resume $resume) {
-//            return $resume->user->is($user);
-//        });
+        Gate::define('store-resume', function ($applicant) {
+            return (Auth::user()->role->title=='admin' || $applicant == Auth::user());
+        });
+
         Gate::define('update-applicants-resumes',function ($user){
             return $user->role->title=='admin';
         });

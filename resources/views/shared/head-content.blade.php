@@ -24,3 +24,7 @@
 
 <!-- JQuery -->
 <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+
+<link href="{{asset('css/dashboard.css')}}" rel="stylesheet">

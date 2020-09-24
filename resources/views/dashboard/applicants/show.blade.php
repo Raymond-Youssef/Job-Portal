@@ -1,4 +1,4 @@
-@extends('dashboard.layout')
+@extends('layouts.dashboard')
 
 @section('main')
     <div class="container">
@@ -103,10 +103,10 @@
                 <form id="resume-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="resume">
-                    <input type="hidden" name="user_id" value="{{$applicant->id}}">
+                    <input type="hidden" name="applicant_id" value="{{$applicant->id}}">
                     <button class="btn btn-info" type="submit">Upload</button>
                 </form>
-                @include('shared.adminResumeAJAX')
+                @include('shared.resumeAJAX')
             </section>
 
         </div>
