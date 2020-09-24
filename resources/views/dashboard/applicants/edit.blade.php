@@ -101,9 +101,32 @@
                             </div>
                         </li>
 
+
+
                         <button type="submit" class="btn btn-dark">Save Applicant</button>
                     </ul>
                 </form>
+            </div>
+
+            {{--Profile Image--}}
+
+            <div class="col-md-4 intro-img order-last aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
+                <div>
+                    @if($image = $applicant->image)
+                        <img id="profile_image" src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="" style="height: 18rem; width: auto;">
+                    @else
+                        <img id="profile_image" src="{{asset('assets/img/default_profile.png')}}"  class="img-thumbnail img-fluid" alt="" style="height: 18rem; width: auto;">
+                    @endif
+                </div>
+                <div id="message"></div>
+                <form id="image-form" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="image">
+                    <input type="hidden" name="applicant_id" value="{{$applicant->id}}">
+                    <button class="btn btn-secondary" type="submit">Change Profile Picture</button>
+                </form>
+
+                @include('shared.imageAJAX')
             </div>
         </div>
     </section>

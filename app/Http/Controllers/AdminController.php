@@ -31,7 +31,7 @@ class AdminController extends Controller
     {
         $admin = Auth::user();
         $image = $admin->image;
-        return view('admin-profile.master',[
+        return view('admin-profile.index',[
             'admin'=>$admin,
             'image' => $image]);
     }
