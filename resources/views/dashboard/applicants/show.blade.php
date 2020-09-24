@@ -1,8 +1,9 @@
-@extends('layouts.app')
-@section('content')
+@extends('dashboard.layout')
+
+@section('main')
     <div class="container">
         <div class="col-xl-10 offset-xl-1">
-            <h1 class="display-4 text-center">{{ $user->name }}</h1>
+            <h1 class="display-4 text-center">{{ $applicant->name }}</h1>
 
 
             {{-- Personal Information--}}
@@ -13,33 +14,30 @@
                         <div class="hero-info">
                             <h3 class="text-primary">Personal Information:</h3>
                             <ul>
-                                <li><span>E-mail: </span> {{ $user->email }}</li>
-                                @if($job_title = $user->job_title)
+                                <li><span>E-mail: </span> {{ $applicant->email }}</li>
+                                @if($job_title = $applicant->job_title)
                                     <li><span>Job Title: </span> {{ $job_title }}</li>
                                 @endif
-                                @if($city = $user->city)
+                                @if($city = $applicant->city)
                                     <li><span>City: </span> {{ $city }}</li>
                                 @endif
-                                @if($country = $user->country)
+                                @if($country = $applicant->country)
                                     <li><span>Country: </span> {{ $country }}</li>
                                 @endif
-                                @if($phone = $user->phone)
+                                @if($phone = $applicant->phone)
                                     <li><span>Phone:  </span> {{ $phone }}</li>
                                 @endif
-                                @if($birth_date = $user->birth_date)
+                                @if($birth_date = $applicant->birth_date)
                                     <li><span>Date of Birth: </span>{{ $birth_date }}</li>
                                 @endif
                             </ul>
-                        </div>
-                        <div style="position: absolute; bottom: 2rem; right: 2rem;">
-                            <a href="{{ route('profile.edit') }}"  class="btn btn-info" role="button">Edit Profile</a>
                         </div>
                     </div>
 
                     {{--Profile Image--}}
                     <div class="col-md-4 intro-img order-last aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
-                        @if($image)
-                            <img src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="Profile Picture" style="height: 18rem; width: auto;">
+                        @if($applicant->image)
+                            <img src="{{asset($applicant->image->path)}}" class="img-thumbnail img-fluid" alt="Profile Picture" style="height: 18rem; width: auto;">
                         @else
                             <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail img-fluid" style="height: 18rem; width: auto;">
                         @endif
@@ -51,24 +49,22 @@
             <hr>
 
             {{--Cover Letter--}}
-            @if($coverLetter = $user->cover_letter)
                 <section id="cover-letter">
                     <h3 class="text-primary">Cover Letter:</h3>
                     <blockquote class="blockquote">
-                        <p>{{$coverLetter}}</p>
+                        <p>{{$applicant->cover_letter}}</p>
                     </blockquote>
                 </section>
 
                 <hr>
-            @endif
             {{--End Cover Letter --}}
 
             {{-- Resumes --}}
             <section id="resumes">
                 <h3 class="text-primary">Resumes:</h3>
                 <table class="table table-hover" id="resumes_list">
-                    @if(count($resumes)>0)
-                        @foreach($resumes as $resume)
+                    @if(count($applicant->resumes)>0)
+                        @foreach($applicant->resumes as $resume)
                             <tr>
                                 <td>
                                     {{$resume->name}}
@@ -107,10 +103,11 @@
                 <form id="resume-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="resume">
+                    <input type="hidden" name="user_id" value="{{$applicant->id}}">
                     <button class="btn btn-info" type="submit">Upload</button>
                 </form>
+                @include('shared.adminResumeAJAX')
             </section>
-            @include('shared.resumeAJAX')
 
         </div>
     </div>

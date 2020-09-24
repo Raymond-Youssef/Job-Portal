@@ -7,7 +7,7 @@ define('LARAVEL_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
-| Check If Application Is Under Maintenance
+| Check If applications Is Under Maintenance
 |--------------------------------------------------------------------------
 |
 | If the application is maintenance / demo mode via the "down" command we
@@ -35,7 +35,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
-| Run The Application
+| Run The applications
 |--------------------------------------------------------------------------
 |
 | Once we have the application, we can handle the incoming request using

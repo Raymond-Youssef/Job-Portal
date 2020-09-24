@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApplicantAdminController;
+use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +46,7 @@ Route::get('/searching', function () {
 | Profile Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix'=>'profile','middleware'=>'UserMiddleware'],function() {
+Route::group(['prefix'=>'profile'],function() {
     Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
     Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
@@ -84,6 +87,20 @@ Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],functi
 });
 
 
+Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function(){
+
+    Route::get('/', function() {
+        return view('dashboard.master');
+    })->name('dashboard')->middleware('auth');
+
+    Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
+    Route::post('/resume/add',[ResumeController::class,'adminStore'])->name('resume.adminStore'); // Add new resume
+    Route::delete('/resume/{resume}',[ResumeController::class, 'adminDestroy'])->name('resume.adminDestroy'); // Remove a resume
+    Route::patch('/resume/{resume}', [ResumeController::class,'adminSetDefault'])->name('resume.adminUpdate'); // Update default resume
+
+});
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -110,9 +127,9 @@ Route::post('image/store',[ImageController::class, 'store'])->name('image.store'
 |--------------------------------------------------------------------------
 */
 
-Route::get('/Application', function (){
-    return view('Application.master');
-})->name('Application');
+Route::get('/applications', function (){
+    return view('applications.master');
+})->name('applications');
 
 
 

@@ -11,9 +11,15 @@
                         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @endif
                 @else {{-- User Routes --}}
-                <li>
-                    <a href="{{ route('Application') }}">Applications</a>
-                </li>
+                @if(Auth::user()->role->title=='admin')
+                    <li>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('applications') }}">Applications</a>
+                    </li>
+                @endif
                 <li class="drop-down"><a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}</a>
                     <ul> {{-- Profiles depending on user types --}}

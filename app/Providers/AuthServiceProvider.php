@@ -41,5 +41,13 @@ class AuthServiceProvider extends ServiceProvider
 //        Gate::define('update-resume', function (User $user, Resume $resume) {
 //            return $resume->user->is($user);
 //        });
+        Gate::define('update-applicants-resumes',function ($user){
+            return $user->role->title=='admin';
+        });
+
+        Gate::define('destroy-applicants-resumes',function ($user){
+           return $user->role->title=='admin';
+        });
+
     }
 }

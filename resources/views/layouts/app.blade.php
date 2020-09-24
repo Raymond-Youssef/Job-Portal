@@ -2,10 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('shared.head-content')
+    @yield('head')
 </head>
 
 <body>
-<div id="app">
+<div id="app" >
     {{-- Header Component --}}
     @include('shared.header')
 
@@ -30,5 +31,6 @@
 
 {{-- Javascript --}}
 @include('shared.javascript')
+@yield('JS')
 </body>
 </html>

@@ -19,7 +19,7 @@ class ResumesPolicy
      */
     public function setDefault(User $user, Resume $resume)
     {
-        return $resume->user->is($user);
+        return ($resume->user->is($user) || $user->role->title=='admin');
     }
 
     /**
@@ -31,7 +31,7 @@ class ResumesPolicy
      */
     public function destroy(User $user, Resume $resume)
     {
-        return $resume->user->is($user);
+        return ($resume->user->is($user) || $user->role->title=='admin');
     }
 
 }

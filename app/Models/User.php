@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+
+
     /**
      * The attributes that are mass assignable.
      * @var array
@@ -58,10 +60,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Resume');
     }
 
-    public function saveResume($resume)
-    {
-        return $this->resumes()->save($resume);
-    }
 
     /**
      * @return BelongsTo User Role
@@ -81,6 +79,10 @@ class User extends Authenticatable
         return $this->role->title;
     }
 
+    public function saveResume($resume)
+    {
+        return $this->resumes()->save($resume);
+    }
 
 
 

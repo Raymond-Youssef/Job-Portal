@@ -60,7 +60,6 @@
                         </div>
 
 
-                        {{--TODO: Change the radio buttons looking--}}
                         {{-- Radio Buttons --}}
                         <fieldset class="form-group">
                             <div class="form-group row">
