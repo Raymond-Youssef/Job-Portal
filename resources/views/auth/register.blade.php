@@ -59,19 +59,30 @@
                             </div>
                         </div>
 
+
+                        {{--TODO: Change the radio buttons looking--}}
                         {{-- Radio Buttons --}}
                         <fieldset class="form-group">
                             <div class="form-group row">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="applicant-radio" name="role" class="custom-control-input" value="user">
-                                    <label class="custom-control-label" for="applicant-radio">Applicant</label>
+                                <label for="role" class="col-md-4 text-md-right">{{ __('Account Type:') }}</label>
+                                <div class="ml-4 text-md-right">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="applicant-radio" name="role" class="custom-control-input" value="user">
+                                        <label class="custom-control-label" for="applicant-radio">Applicant</label>
+                                    </div>
+                                    <div class="custom-control ml-4 custom-radio custom-control-inline">
+                                        <input type="radio" id="company-radio" name="role" class="custom-control-input" value="company">
+                                        <label class="custom-control-label" for="company-radio">Company</label>
+                                    </div>
                                 </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="company-radio" name="role" class="custom-control-input" value="company">
-                                    <label class="custom-control-label" for="company-radio">Company</label>
-                                </div>
+                                @error('role')
+                                <span class="alert-danger" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
                             </div>
                         </fieldset>
+                        {{-- End Radio Buttons --}}
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
