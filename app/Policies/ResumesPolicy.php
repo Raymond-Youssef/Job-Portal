@@ -26,4 +26,9 @@ class ResumesPolicy
         return ($resume->user->is($user) || $user->role->title=='admin');
     }
 
+    public function setDefault(User $user, Resume $resume)
+    {
+        return ($resume->user->is($user) || $user->role->title=='admin');
+    }
+
 }

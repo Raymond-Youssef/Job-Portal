@@ -3,12 +3,12 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JobsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicantAdminController;
-use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +72,9 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
     Route::patch('/password/update',[CompanyProfileController::class, 'updatePassword'])->name('company-password.update'); // Change Company Password
 });
 
+Route::group(['prefix'=>'company'],function (){
+//    Route::resource('/jobs',[JobsController::class]);
+});
 
 
 /*
@@ -79,6 +82,8 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 | Admins Routes
 |--------------------------------------------------------------------------
 */
+
+// Admin Profile Routes
 Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],function() {
     Route::get('/',[AdminController::class, 'index'])->name('admin-profile.index'); // Show Company Profile
     Route::get('/edit',[AdminController::class, 'edit'])->name('admin-profile.edit');  // Show Edit Company profile page
@@ -87,6 +92,9 @@ Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],functi
 });
 
 
+
+
+// Dashboard routes
 Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function(){
 
     Route::get('/', function() {
@@ -94,9 +102,6 @@ Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function()
     })->name('dashboard')->middleware('auth');
 
     Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
-    Route::post('/resume/add',[ResumeController::class,'adminStore'])->name('resume.adminStore'); // Add new resume
-    Route::delete('/resume/{resume}',[ResumeController::class, 'adminDestroy'])->name('resume.adminDestroy'); // Remove a resume
-    Route::patch('/resume/{resume}', [ResumeController::class,'adminSetDefault'])->name('resume.adminUpdate'); // Update default resume
 
 });
 
