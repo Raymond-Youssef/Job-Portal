@@ -61,22 +61,22 @@ class AdminController extends Controller
         if($admin->email == request('email'))
         {
             $this->validate($request, [
-                'name' => 'required',
+                'name' => 'required|string|max:255',
                 //'email' => 'required|email|unique:users',
                 'creation_date' => 'nullable|date',
-                'city' => 'nullable',
-                'country' => 'nullable',
+                'city' => 'nullable|string|max:255',
+                'country' => 'nullable|string|max:255',
                 'phone' => 'nullable|digits:11',
             ]);
         }
         else
         {
             $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users|string|max:255',
                 'creation_date' => 'nullable|date',
-                'city' => 'nullable',
-                'country' => 'nullable',
+                'city' => 'nullable|string|max:255',
+                'country' => 'nullable|string|max:255',
                 'phone' => 'nullable|digits:11',
             ]);
             $admin->email = $request->email;
@@ -104,7 +104,7 @@ class AdminController extends Controller
     {
         $admin = Auth::user();
         $this->validate($request, [
-            'password' => 'required|confirmed|min:8'
+            'password' => 'required|confirmed|min:8|string'
         ]);
         $admin->password = bcrypt($request->password);
         $admin->save();

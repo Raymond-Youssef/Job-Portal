@@ -63,20 +63,20 @@ class ProfileController extends Controller
         if($user->email == request('email'))
         {
             $this->validate($request, [
-                'name' => 'required',
-                //'email' => 'required|email|unique:users',
-                'job_title' => 'nullable',
+                'name' => 'required|string|max:255',
+                //'email' => 'required|email|unique:users|max:255',
+                'job_title' => 'nullable|string|max:255',
                 'birth_date' => 'nullable|date',
-                'city' => 'nullable',
-                'country' => 'nullable',
+                'city' => 'nullable|string|max:255',
+                'country' => 'nullable|string|max:255',
                 'phone' => 'nullable|digits:11',
             ]);
         }
         else
         {
             $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users|max:255|string',
                 'job_title' => 'nullable',
                 'birth_date' => 'nullable|date',
                 'city' => 'nullable',
@@ -110,7 +110,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $this->validate($request, [
-            'password' => 'required|confirmed|min:8'
+            'password' => 'required|confirmed|min:8|string'
         ]);
         $user->password = bcrypt($request->password);
         $user->save();
