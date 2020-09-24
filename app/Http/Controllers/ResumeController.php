@@ -56,6 +56,7 @@ class ResumeController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {

@@ -12,4 +12,12 @@ class Image extends Model
     protected $fillable = [
       'name','path'
     ];
+
+    protected $table = 'images';
+
+
+    public function user()
+    {
+        return $this->hasOne('App\Models\User');
+    }
 }

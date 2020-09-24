@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use App\Models\Image;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,7 @@ class ImageController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
@@ -33,21 +36,29 @@ class ImageController extends Controller
             'image'=> 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-
         if($validation->passes())
         {
+            $currentUser = Auth::user();
             $image = $request->file('image');
             $name = $image->getClientOriginalName();
+            if($currentUser->role->title=='admin' && isset($request->applicant_id))
+            {
+                $targetApplicant = Applicant::find($request->applicant_id);
+            }
+            else
+            {
+                $targetApplicant = Auth::user();
+            }
+            $this->authorize('change-image',$targetApplicant);
             if($path = $request->image->store('images'))
             {
                 $image = new Image();
                 $image->name = $name;
                 $image->path = $path;
                 $image->save();
-                $user = Auth::user();
-                $oldImageId = $user->image_id;
-                $user->image_id = $image->id;
-                $user->save();
+                $oldImageId = $targetApplicant->image_id;
+                $targetApplicant->image_id = $image->id;
+                $targetApplicant->save();
                 if($oldImage = Image::find($oldImageId))
                 {
                     Storage::delete($oldImage->path);
