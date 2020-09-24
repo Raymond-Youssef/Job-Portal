@@ -86,6 +86,7 @@ class ApplicantAdminController extends Controller
                 'city' => 'nullable|string|max:255',
                 'country' => 'nullable|string|max:255',
                 'phone' => 'nullable|digits:11',
+                'cover_letter' => 'nullable|max:500',
             ]);
         }
         else
@@ -98,6 +99,7 @@ class ApplicantAdminController extends Controller
                 'city' => 'nullable',
                 'country' => 'nullable',
                 'phone' => 'nullable|digits:11',
+                'cover_letter' => 'nullable|max:500',
             ]);
             $applicant->email = $request->email;
         }
@@ -109,6 +111,7 @@ class ApplicantAdminController extends Controller
         $applicant->city = request('city');
         $applicant->country = request('country');
         $applicant->phone = request('phone');
+        $applicant->cover_letter = request('cover_letter');
         $applicant->save();
 
         return redirect()->route('applicant.index')->with(['success' => 'Applicant Edited Successfully']);

@@ -86,9 +86,21 @@
                                         <input type="tel" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="01234567890" value="{{$user->phone}}">
                                     </div>
                                 </li>
-                                <button type="submit" class="btn btn-dark">Save Profile</button>
+
                             </ul>
+                            <h3 class="text-primary">Cover Letter:</h3>
+                            @error('cover_letter')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <ul>
+                                    <textarea class="form-control" id="cover-letter" name="cover_letter" rows="3"></textarea>
+                                    <label for="cover-letter" class="text-muted">Cover letters should be between 150 and 500 characters</label>
+                                </ul>
+                            </div>
+                            <button type="submit" class="btn btn-dark">Save Profile</button>
                         </form>
+                        <hr>
                         <form method="POST" action="{{route('password.update')}}">
                             @csrf
                             @method('PATCH')
@@ -142,14 +154,7 @@
 
             <hr>
 
-            @if($coverLetter = $user->cover_letter)
-                <section id="cover-letter">
-                    <h3 class="text-primary">Cover Letter:</h3>
-                    <blockquote class="blockquote">
-                        <p>{{$coverLetter}}</p>
-                    </blockquote>
-                </section>
-            @endif
+
 
         </div>
     </div>

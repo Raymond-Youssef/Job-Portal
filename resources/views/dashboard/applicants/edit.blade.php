@@ -81,6 +81,16 @@
                                 <input type="tel" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="01234567890" value="{{$applicant->phone}}">
                             </div>
                         </li>
+
+                        @error('cover_letter')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <li>
+                            <div class="form-group">
+                                <i class="ion-android-checkmark-circle"></i> <label>Cover Letter:</label>
+                                <textarea class="form-control" id="cover-letter" name="cover_letter" rows="3">{{$applicant->cover_letter}}</textarea>
+                            </div>
+                        </li>
                         @error('password')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -103,8 +113,11 @@
 
 
 
+
                         <button type="submit" class="btn btn-dark">Save Applicant</button>
                     </ul>
+
+
                 </form>
             </div>
 
