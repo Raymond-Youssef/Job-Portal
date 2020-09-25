@@ -25,6 +25,9 @@
                                         <blockquote class="blockquote">
                                             <p class="h4 text-primary">{{$job->title}}</p>
                                             <footer class="blockquote-footer">{{$job->city}}, {{$job->country}}</footer>
+{{--                                            @foreach($job->skills = $skill)--}}
+{{--                                                <p>{{$skill}}</p>--}}
+{{--                                            @endforeach--}}
                                         </blockquote>
                                         <p>{{$job->description}}</p>
                                         <p class="text-success"><h6 class="text-success">Last Updated At:</h6>{{$job->updated_at}}</p>

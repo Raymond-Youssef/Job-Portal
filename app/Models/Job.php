@@ -9,6 +9,10 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'title', 'description', 'skills', 'city', 'country'
+    ];
+
     public function company()
     {
         return $this->belongsTo('App\Models\Company');

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Job;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -39,7 +42,7 @@ class JobController extends Controller
     /**
      * Show the form for creating a new job.
      *
-     * @return Response
+     * @return View
      */
     public function create()
     {
@@ -49,12 +52,43 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        //
+        // Logged-in user
+        $company = Auth::user();
+        // Validation
+        $this->validate($request,[
+           'title' => 'required|string|max:255|min:5',
+           'description' => 'required|min:10',
+            'skills' => 'nullable|string',
+            'city' => 'required|max:255',
+            'country' => 'required|max:255',
+        ]);
+        // Saving the newly created Job
+        $job = new Job();
+        $job->title = request('title');
+        $job->description = request('description');
+        $skillsArray = explode(',',request('skills'));
+        // Turing skills into JSON
+        $skills = '[';
+        foreach($skillsArray as $skill)
+        {
+            $skills .= '"'.$skill.'"'. ',';
+        }
+        $skills = rtrim($skills, ",");
+        $skills .= ']';
+        $job->skills = $skills;
+        $job->city = request('city');
+        $job->country = request('country');
+        $job->company_id = $company->id;
+        $job->save();
+
+        // Redirect to the index page
+        return redirect()->route('job.index')->with(['success'=>'Job Added Successfully']);
     }
 
 
@@ -72,7 +106,7 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return Response
      */
