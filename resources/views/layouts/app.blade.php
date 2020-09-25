@@ -19,12 +19,10 @@
 
 
     <footer id="footer" class="blog-footer section-bg">
-        <div class="container">
 
             <div class="copyright">
                 &copy; Copyright <strong>Job Portal</strong>. All Rights Reserved
             </div>
-        </div>
     </footer>
 
 </div>

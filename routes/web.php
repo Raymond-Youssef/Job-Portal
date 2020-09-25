@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\JobsController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ResumeController;
@@ -73,7 +72,7 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 });
 
 Route::group(['prefix'=>'company'],function (){
-//    Route::resource('/jobs',[JobsController::class]);
+    Route::resource('/jobs', JobController::class);
 });
 
 

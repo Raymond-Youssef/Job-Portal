@@ -14,13 +14,17 @@
                         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @endif
                 @else {{-- User Routes --}}
-                @if(Auth::user()->role->title=='admin')
+                @if(Auth::user()->role->title=='user')
+                    <li>
+                        <a href="{{ route('applications') }}">Dashboard</a>
+                    </li>
+                @elseif(Auth::user()->role->title=='company')
+                    <li>
+                        <a href="{{ route('jobs.index') }}">My Jobs</a>
+                    </li>
+                @elseif(Auth::user()->role->title=='admin')
                     <li>
                         <a href="{{ route('dashboard') }}">Dashboard</a>
-                    </li>
-                @else
-                    <li>
-                        <a href="{{ route('applications') }}">Applications</a>
                     </li>
                 @endif
                 <li class="drop-down"><a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
