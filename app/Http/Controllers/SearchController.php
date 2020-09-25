@@ -89,4 +89,6 @@ class SearchController extends Controller
             'search'=>$keyWord,
         ]);
     }
+
+
 }

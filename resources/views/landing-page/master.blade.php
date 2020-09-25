@@ -24,7 +24,7 @@
                         <form action="{{route('search.jobs')}}" method="GET">
                             @csrf
                             @method('GET')
-                            <input type ="text" class="search-field job" placeholder="Job Title, Company Name.." name="search">
+                            <input type="search" class="search-field job" placeholder="Explore Jobs.." name="search">
                             <button class="btn btn-get-started" type="submit">Search</button>
                         </form>
                     </div>
@@ -36,40 +36,54 @@
         </div>
     </section><!-- End Hero -->
 
-
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
             <div class="row">
 
-                <div class="col-md-6 col-lg-3 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="box">
-                        <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-                        <h4 class="title"><a href="">Jobs By Function</a></h4>
-                    </div>
+
+                <div class="col">
+                    <a href="{{route('search.jobs')}}">
+                        <div class="box">
+                            <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
+                            <h4 class="title">Looking For a Job?</h4>
+                        </div>
+                    </a>
                 </div>
 
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="box">
-                        <div class="icon" style="background: #fff0da;"><i class="ion-ios-bookmarks-outline" style="color: #e98e06;"></i></div>
-                        <h4 class="title"><a href="">Jobs By Company</a></h4>
-                    </div>
+                <div class="col">
+                    <a href="{{route('search.companies')}}">
+                        <div class="box">
+                            <div class="icon" style="background: #fff0da;"><i class="ion-ios-bookmarks-outline" style="color: #e98e06;"></i></div>
+                            <h4 class="title">Search For Companies</h4>
+                        </div>
+                    </a>
                 </div>
 
-                <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="box">
-                        <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
-                        <h4 class="title"><a href="">Jobs By Industry</a></h4>
-                    </div>
+                <div class="col">
+                    <a href="{{route('search.applicants')}}">
+                        <div class="box">
+                            <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+                            <h4 class="title">Search For Applicants</h4>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="col-md-6 col-lg-3 wow" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="box">
-                        <div class="icon" style="background: #eafde7;"><i class="fa fa-map-marker" style="font-size:36px"></i></div>
-                        <h4 class="title"><a href="">Jobs By Location</a></h4>
-                    </div>
-                </div>
-
+                @auth
+                    @if(Auth::user()->role->title=='user')
+                        <div class="col">
+                            <form method="GET" action="{{route('search.jobs')}}">
+                                <input type="hidden" name="search" value="{{Auth::user()->job_title}}">
+                                <button style="background: transparent; border-style: none; outline: none;">
+                                    <div class="box">
+                                        <div class="icon" style="background: #eafde7;"><i class="fa fa-map-marker" style="font-size:36px"></i></div>
+                                        <h4 class="title">Recommended Jobs For You</h4>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                @endauth
             </div>
         </div>
     </section><!-- End Services Section -->
+
 @endsection

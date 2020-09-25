@@ -1,6 +1,12 @@
 <header id="header" class="fixed-top header-transparent">
     <div class="container d-flex align-items-center">
         <h1 class="logo mr-auto"><a href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a></h1>
+
+
+{{--        <form class="form-inline">--}}
+{{--            <input class="form-control mr-sm-2" type="search" placeholder="Search.." aria-label="Search" style="">--}}
+{{--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
+{{--        </form>--}}
         <nav class="main-nav d-none d-lg-block">
             <ul>
 
