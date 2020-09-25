@@ -12,8 +12,11 @@ class SearchController extends Controller
 {
 
     /**
+     * Shows a listing of jobs by the searched keyword
+     *
      * @param Request $request
      * @return View
+     * @throws ValidationException
      */
     public function jobs(Request $request)
     {
@@ -35,11 +38,17 @@ class SearchController extends Controller
     }
 
     /**
+     * Shows a listing of companies by the searched keyword
+     *
      * @param Request $request
      * @return View
+     * @throws ValidationException
      */
     public function companies(Request $request)
     {
+        $this->validate($request,[
+            'search' => 'nullable|max:255'
+        ]);
         $keyWord = $request->search;
         $companies = Company::where('name','LIKE','%'.$keyWord.'%')
             ->orWhere('email','LIKE','%'.$keyWord.'%')
@@ -55,11 +64,17 @@ class SearchController extends Controller
     }
 
     /**
+     * Shows a listing of applicants by the searched keyword
+     *
      * @param Request $request
      * @return View
+     * @throws ValidationException
      */
     public function applicants(Request $request)
     {
+        $this->validate($request,[
+            'search' => 'nullable|max:255'
+        ]);
         $keyWord = $request->search;
         $applicants = Applicant::where('name','LIKE','%'.$keyWord.'%')
             ->orWhere('job_title','LIKE','%'.$keyWord.'%')

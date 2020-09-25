@@ -23,6 +23,8 @@
                                                 <p class="h4 text-primary">{{$applicant->name}}</p>
                                                 <footer class="blockquote-footer">{{$applicant->email}}</footer>
                                             </blockquote>
+
+                                            <h6 class="text-info">Occupation: {{$applicant->job_title}}</h6>
                                             <hr>
                                             <!-- Button -->
                                             <a href="#" class="btn btn-primary">Contact Info</a>
