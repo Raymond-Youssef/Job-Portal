@@ -25,12 +25,19 @@
                                         <blockquote class="blockquote">
                                             <p class="h4 text-primary">{{$job->title}}</p>
                                             <footer class="blockquote-footer">{{$job->city}}, {{$job->country}}</footer>
-{{--                                            @foreach($job->skills = $skill)--}}
-{{--                                                <p>{{$skill}}</p>--}}
-{{--                                            @endforeach--}}
                                         </blockquote>
-                                        <p>{{$job->description}}</p>
-                                        <p class="text-success"><h6 class="text-success">Last Updated At:</h6>{{$job->updated_at}}</p>
+                                        <hr>
+                                        <div id="skill">
+                                            <h6 class="text-info h6">Skills Required:</h6>
+                                            <em>{{str_replace('',',', str_replace(array('"','[',']'),'',$job->skills) )}}</em>
+                                        </div>
+                                        <hr>
+                                        <div id="description">
+                                            <h6 class="text-info h6">Job Description:</h6>
+                                            <p>{{$job->description}}</p>
+                                        </div>
+                                        <hr>
+                                        <p><span class="text-success h5">Last Updated At: </span>{{$job->updated_at}}</p>
                                     </div>
                                     <a href="{{route('job.edit',$job)}}" class="btn btn-success articles-button" style="top: 2rem;">Edit Job</a>
                                     <form action="{{route('job.destroy',$job)}}" method="POST">

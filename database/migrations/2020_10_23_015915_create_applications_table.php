@@ -13,7 +13,7 @@ class CreateApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('job', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description');
@@ -29,9 +29,9 @@ class CreateApplicationsTable extends Migration
         });
 
         Schema::create('applications', function (Blueprint $table) {
-            $table->primary(['job_id','user_id']);
             $table->foreignId('job_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->primary(['job_id','user_id']);
             $table->enum('status',['applied','rejected','accepted']);
             $table->timestamps();
         });

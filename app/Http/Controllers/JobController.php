@@ -34,7 +34,7 @@ class JobController extends Controller
     public function index()
     {
         $company = Company::find(Auth::user()->id);
-        $jobs = $company->jobs()->paginate(10);
+        $jobs = $company->jobs()->orderBy('updated_at','desc')->paginate(10);
         return view('job.index',['jobs' => $jobs]);
 
     }
