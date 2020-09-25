@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Job;
+use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -50,7 +51,7 @@ class JobController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Job in storage.
      *
      * @param Request $request
      * @return RedirectResponse
@@ -91,38 +92,76 @@ class JobController extends Controller
         return redirect()->route('job.index')->with(['success'=>'Job Added Successfully']);
     }
 
-
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Job.
      *
-     * @param  int  $id
+     * @param  Job  $job
      * @return View
      */
-    public function edit($id)
+    public function edit(Job $job)
     {
-        // TODO: make a job edit page
+        return view('job.edit',['job'=>$job]);
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param Job $job
+     * @return RedirectResponse
+     * @throws ValidationException
+     * @throws AuthorizationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Job $job)
     {
-        // TODO: make a job update function
+        // Logged-in user
+        $company = Auth::user();
+        // Validation
+        $this->authorize($job);
+        $this->validate($request,[
+            'title' => 'required|string|max:255|min:5',
+            'description' => 'required|min:10',
+            'skills' => 'nullable|string',
+            'city' => 'required|max:255',
+            'country' => 'required|max:255',
+        ]);
+        // Saving the newly created Job
+        $job->title = request('title');
+        $job->description = request('description');
+        $skillsArray = explode(',',request('skills'));
+        // Turing skills into JSON
+        $skills = '[';
+        foreach($skillsArray as $skill)
+        {
+            $skills .= '"'.$skill.'"'. ',';
+        }
+        $skills = rtrim($skills, ",");
+        $skills .= ']';
+        $job->skills = $skills;
+        // Done
+        $job->city = request('city');
+        $job->country = request('country');
+        $job->company_id = $company->id;
+        $job->save();
+
+        // Redirect to the index page
+        return redirect()->route('job.index')->with(['success'=>'Job Edited Successfully']);
     }
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Job $job
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Job $job)
     {
-        // TODO: make a job destroy function
+        $this->authorize($job);
+        $job->delete();
+        return redirect()->back()->with(['success'=>'Job deleted Successfully']);
     }
 }

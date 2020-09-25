@@ -10,9 +10,8 @@
     </style>
 @endsection
 
-
 @section('content')
-    <div class="container">
+    <div class="container contain">
         <main>
 
             @foreach($jobs as $job)
@@ -29,7 +28,7 @@
                                         <hr>
                                         <div id="skill">
                                             <h6 class="text-info h6">Skills Required:</h6>
-                                            <em>{{str_replace('',',', str_replace(array('"','[',']'),'',$job->skills) )}}</em>
+                                            <em>{{ str_replace('',',', str_replace(array('"','[',']'),'',$job->skills) )}}</em>
                                         </div>
                                         <hr>
                                         <div id="description">
@@ -43,7 +42,7 @@
                                     <form action="{{route('job.destroy',$job)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger articles-button" style="bottom: 2rem;">Delete Job</button>
+                                        <button type="submit" class="btn btn-danger articles-button" onclick="return confirm('Are you sure you want to delete this job?')" style="bottom: 2rem;">Delete Job</button>
                                     </form>
                                 </div>
                             </div>
