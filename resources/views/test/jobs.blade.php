@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="form">
-                    <h1 class="display-4">{{ __('Job Announcement') }}</h1>
+                    <h2 class="display-4">{{ __('Job Announcement') }}</h2>
                     <form method="POST" action="{{ route('') }}">
                         @csrf
 
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="job_description" class="col-md-4 col-form-label text-md-right">{{ __('Job job_description') }}</label>
+                            <label for="job_description" class="col-md-4 col-form-label text-md-right">{{ __('Job description') }}</label>
 
                             <div class="col-md-6">
                                 <textarea id="job-description" class="form-control @error('job-description') is-invalid @enderror" name="job-description" value="{{ old('job-decription') }}" required autocomplete="job-description" autofocus>
@@ -50,8 +50,7 @@
                                 @enderror
                             </div>
                         </div>
-                        </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
@@ -66,8 +65,7 @@
                             </div>
                         </div>
 
-                        </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
@@ -81,6 +79,7 @@
                                 @enderror
                             </div>
                         </div>
+<<<<<<< HEAD
 
 
 
@@ -91,6 +90,21 @@
 
 
 
+||||||| 3ea8dfa
+                    
+
+                        
+
+
+                      
+
+
+                        
+                   
+=======
+                
+                   
+>>>>>>> 55faae5713ef081be64eb7d84d2a0424745559a1
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-lg btn-primary">
