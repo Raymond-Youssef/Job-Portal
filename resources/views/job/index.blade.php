@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('head')
-    {{--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans">--}}
     <link rel="stylesheet" href="{{asset('css/jobs/app.css')}}">
     <style>
         .articles-button{
@@ -14,7 +13,6 @@
 
 @section('content')
     <div class="container">
-
         <main>
 
             @foreach($jobs as $job)
@@ -63,5 +61,7 @@
                 </section>
             </div>
         </aside>
+
+
     </div>
 @endsection

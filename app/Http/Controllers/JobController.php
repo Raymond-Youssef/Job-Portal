@@ -24,7 +24,7 @@ class JobController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of Jobs
      *
      * @return View
      */
@@ -32,18 +32,18 @@ class JobController extends Controller
     {
         $company = Company::find(Auth::user()->id);
         $jobs = $company->jobs()->paginate(10);
-        return view('jobs.index',['jobs' => $jobs]);
+        return view('job.index',['jobs' => $jobs]);
 
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new job.
      *
      * @return Response
      */
     public function create()
     {
-        //
+        return view('job.create');
     }
 
     /**
