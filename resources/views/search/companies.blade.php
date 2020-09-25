@@ -25,7 +25,7 @@
                                             </blockquote>
                                             <hr>
                                             <!-- Button -->
-                                            <a href="#" class="btn btn-primary">Contact</a>
+                                            <a href="{{route('search.companies.show',$company)}}" class="btn btn-primary">Contact</a>
                                         </div>
                                         <div class=" col-md-2  col-sm-4 col-xs-0">
                                             @if($image = $company->image)

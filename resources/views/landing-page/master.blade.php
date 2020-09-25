@@ -45,7 +45,7 @@
                     <a href="{{route('search.jobs')}}">
                         <div class="box">
                             <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-                            <h4 class="title">Looking For a Job?</h4>
+                            <h4 class="title">Search For Jobs</h4>
                         </div>
                     </a>
                 </div>

@@ -108,6 +108,20 @@ Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function()
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Search Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix'=>'search', 'middleware'=>'auth'],function() {
+    Route::get('/jobs', [SearchController::class,'jobs'])->name('search.jobs');
+    Route::get('/jobs/show/{job}', [SearchController::class,'showJob'])->name('search.jobs.show');
+    Route::get('/companies', [SearchController::class, 'companies'])->name('search.companies');
+    Route::get('/companies/{company}',[SearchController::class, 'showCompany'])->name('search.companies.show');
+    Route::get('/applicants', [SearchController::class, 'applicants'])->name('search.applicants');
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -139,11 +153,7 @@ Route::get('/applications', function (){
 })->name('applications');
 
 
-Route::group(['prefix'=>'search', 'middleware'=>'auth'],function() {
-    Route::get('/jobs', [SearchController::class,'jobs'])->name('search.jobs');
-    Route::get('/companies', [SearchController::class, 'companies'])->name('search.companies');
-    Route::get('/applicants', [SearchController::class, 'applicants'])->name('search.applicants');
-});
+
 
 
 //Route::any('/test',function(){

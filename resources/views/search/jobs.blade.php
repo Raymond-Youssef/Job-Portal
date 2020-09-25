@@ -30,7 +30,7 @@
                                             <hr>
 
                                             <!-- Button -->
-                                            <a href="#" class="btn btn-primary">Details</a>
+                                            <a href="{{route('search.jobs.show',$job)}}" class="btn btn-primary">Details</a>
 
                                         </div>
                                         <div class=" col-md-2  col-sm-4 col-xs-0">

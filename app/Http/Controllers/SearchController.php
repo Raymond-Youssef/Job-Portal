@@ -37,6 +37,17 @@ class SearchController extends Controller
         ]);
     }
 
+
+    /**
+     * Shows the specified Job
+     * @param Job $job
+     * @return View
+     */
+    public function showJob(Job $job)
+    {
+        return view('search.show.job',['job'=>$job]);
+    }
+
     /**
      * Shows a listing of companies by the searched keyword
      *
@@ -61,6 +72,16 @@ class SearchController extends Controller
             'companies'=>$companies,
             'search'=>$keyWord,
         ]);
+    }
+
+    /**
+     * Shows the specified Job
+     * @param Company $company
+     * @return View
+     */
+    public function showCompany(Company $company)
+    {
+        return view('search.show.company',['company'=>$company]);
     }
 
     /**
