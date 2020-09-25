@@ -10,7 +10,7 @@ class Resume extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name','path','default'
+        'name','path','default','user_id'
     ];
 
 

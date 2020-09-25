@@ -88,9 +88,21 @@
                                         <input type="tel" name="phone" class="form-control" pattern="[0-9]{11}" placeholder="01234567890" value="{{$user->phone}}">
                                     </div>
                                 </li>
-                                <button type="submit" class="btn btn-dark">Save Profile</button>
+
                             </ul>
+                            <h3 class="text-primary">Cover Letter:</h3>
+                            @error('cover_letter')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <ul>
+                                    <textarea class="form-control" id="cover-letter" name="cover_letter" rows="3"></textarea>
+                                    <label for="cover-letter" class="text-muted">Cover letters should be between 150 and 500 characters</label>
+                                </ul>
+                            </div>
+                            <button type="submit" class="btn btn-dark">Save Profile</button>
                         </form>
+<<<<<<< HEAD
 
                         @if($coverLetter = $user->cover_letter)
                 <section id="cover-letter">
@@ -110,6 +122,9 @@
                     
                 </section>
             @endif
+=======
+                        <hr>
+>>>>>>> 123deba6a3b94fd38cf48a9ab01d004591716ba4
                         <form method="POST" action="{{route('password.update')}}">
                             @csrf
                             @method('PATCH')
@@ -156,39 +171,18 @@
                             <button class="btn btn-secondary" type="submit">Change Profile Picture</button>
                         </form>
 
-                        <script>
-                            $(document).ready(function (){
-                                $('#image-form').on('submit', function (event){
-                                    event.preventDefault();
-                                    $.ajax({
-                                        url:'{{route('image.store')}}',
-                                        method: 'POST',
-                                        data: new FormData(this),
-                                        dataType: 'JSON',
-                                        contentType: false,
-                                        cache: false,
-                                        processData: false,
-                                        success:function (data)
-                                        {
-                                            $('#message').css('display','block');
-                                            $('#message').html(data.message);
-                                            $('#message').attr('class',data.class_name);
-                                            if(data.success) {
-                                                $('#profile_image').attr('src', data.uploaded_image);
-                                            }
-                                        }
-                                    })
-                                });
-                            });
-                        </script>
-
+                        @include('shared.imageAJAX')
                     </div>
                 </div>
             </section>
 
             <hr>
 
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 123deba6a3b94fd38cf48a9ab01d004591716ba4
 
         </div>
     </div>

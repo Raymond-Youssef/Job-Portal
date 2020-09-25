@@ -5,6 +5,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -115,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
   }
 }
 
@@ -1567,7 +1568,7 @@ section {
   font-size: 14px;
 }
 
-#footer .php-email-form input::focus, #footer .php-email-form textarea::focus {
+#footer .php-email-form input:focus, #footer .php-email-form textarea:focus {
   background-color: #1bb1dc;
 }
 
@@ -1632,3 +1633,5 @@ section {
 #footer .credits a:hover {
   color: #0a98c0;
 }
+
+

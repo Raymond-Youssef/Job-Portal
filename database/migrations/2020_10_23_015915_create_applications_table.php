@@ -13,10 +13,10 @@ class CreateApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('job', function (Blueprint $table) {
             $table->id();
-            $table->string('job_title');
-            $table->text('job_description');
+            $table->string('title');
+            $table->text('description');
             $table->json('skills')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
@@ -44,7 +44,7 @@ class CreateApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobs');
+        Schema::dropIfExists('job');
         Schema::dropIfExists('applications');
     }
 }

@@ -2,65 +2,80 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\Models\Applicant;
 
-class ProfileController extends Controller
+class ApplicantAdminController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('ApplicantMiddleware');
+        $this->middleware('AdminMiddleware');
     }
-
-
     /**
-     * Display Applicant profile
+     * Display a listing of the resource.
      *
      * @return View
      */
     public function index()
     {
-        $applicant = Auth::user();
-        $resumes = $applicant->resumes;
-        $image = $applicant->image;
-        return view('profile.index',[
-            'user'=>$applicant,
-            'resumes'=>$resumes,
-            'image' => $image]);
+        $applicants = Applicant::paginate(20);
+        return view('dashboard.applicants.index',['applicants'=>$applicants]);
     }
 
 
     /**
-     * Show the form for editing profile.
+     * Store a newly created resource in storage.
+     *
+     * @param Applicant $applicant
+     * @return void
+     */
+    public function store(Applicant $applicant)
+    {
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Applicant $applicant
      * @return View
      */
-    public function edit()
+    public function show(Applicant $applicant)
     {
-        $applicant = Auth::user();
-        return view('profile.edit',['user'=>$applicant]);
+        $applicant = Applicant::find($applicant->id);
+        return view('dashboard.applicants.show',['applicant'=>$applicant]);
     }
 
     /**
-     * Update Profile Information in storage.
+     * Show the form for editing the specified resource.
+     *
+     * @param Applicant $applicant
+     * @return View
+     */
+    public function edit(Applicant $applicant)
+    {
+        return view('dashboard.applicants.edit',['applicant'=>$applicant]);
+    }
+
+    /**
+     * Update the specified resource in storage.
      *
      * @param Request $request
+     * @param Applicant $applicant
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request)
+    public function update(Request $request, Applicant $applicant)
     {
-        $applicant = Auth::user();
+        $applicant = Applicant::find($applicant->id);
         if($applicant->email == request('email'))
         {
             $this->validate($request, [
@@ -99,26 +114,17 @@ class ProfileController extends Controller
         $applicant->cover_letter = request('cover_letter');
         $applicant->save();
 
-        return redirect()->route('profile.index')->with(['success' => 'Profile Edited Successfully']);
+        return redirect()->route('applicant.index')->with(['success' => 'Applicant Edited Successfully']);
     }
-
 
     /**
-     * Update Password in storage.
+     * Remove the specified resource from storage.
      *
-     * @param Request $request
-     * @return RedirectResponse
-     * @throws ValidationException
+     * @param  int  $id
+     * @return Response
      */
-    public function updatePassword(Request $request)
+    public function destroy($id)
     {
-        $applicant = Auth::user();
-        $this->validate($request, [
-            'password' => 'required|confirmed|min:8|string'
-        ]);
-        $applicant->password = bcrypt($request->password);
-        $applicant->save();
-        return redirect()->back()->with(['success' => 'Password Updated Successfully!']);
+        //
     }
-
 }

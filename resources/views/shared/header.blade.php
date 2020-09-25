@@ -3,7 +3,10 @@
         <h1 class="logo mr-auto"><a href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a></h1>
         <nav class="main-nav d-none d-lg-block">
             <ul>
-                <li class="active"><a href="{{ route('home') }}">Home</a></li>
+
+                <li class="active">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
                 {{--Guest Rotues--}}
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -11,9 +14,19 @@
                         <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @endif
                 @else {{-- User Routes --}}
-                <li>
-                    <a href="{{ route('Application') }}">Applications</a>
-                </li>
+                @if(Auth::user()->role->title=='user')
+                    <li>
+                        <a href="{{ route('applications') }}">Dashboard</a>
+                    </li>
+                @elseif(Auth::user()->role->title=='company')
+                    <li>
+                        <a href="{{ route('job.index') }}">My Jobs</a>
+                    </li>
+                @elseif(Auth::user()->role->title=='admin')
+                    <li>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                @endif
                 <li class="drop-down"><a id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}</a>
                     <ul> {{-- Profiles depending on user types --}}
@@ -40,7 +53,7 @@
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('Log-out') }} <span data-feather="log-out"></span>
                             </a>
                         </li>
                         <li>
@@ -54,4 +67,5 @@
             @endguest
         </nav>
     </div>
+    <script src="{{asset('js/dashboard.js')}}"></script>
 </header>

@@ -20,6 +20,7 @@ class CompanyProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('CompanyMiddleware');
     }
 
     /**
@@ -62,22 +63,22 @@ class CompanyProfileController extends Controller
         if($company->email == request('email'))
         {
             $this->validate($request, [
-                'name' => 'required',
+                'name' => 'required|string|max:255',
                 //'email' => 'required|email|unique:users',
                 'creation_date' => 'nullable|date',
-                'city' => 'nullable',
-                'country' => 'nullable',
+                'city' => 'nullable|string|max:255',
+                'country' => 'nullable|string|max:255',
                 'phone' => 'nullable|digits:11',
             ]);
         }
         else
         {
             $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users|max:255|string',
                 'creation_date' => 'nullable|date',
-                'city' => 'nullable',
-                'country' => 'nullable',
+                'city' => 'nullable|string|max:255',
+                'country' => 'nullable|string|max:255',
                 'phone' => 'nullable|digits:11',
             ]);
             $company->email = $request->email;
@@ -105,7 +106,7 @@ class CompanyProfileController extends Controller
     {
         $company = Auth::user();
         $this->validate($request, [
-            'password' => 'required|confirmed|min:8'
+            'password' => 'required|confirmed|min:8|string'
         ]);
         $company->password = bcrypt($request->password);
         $company->save();

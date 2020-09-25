@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Name
+    | applications Name
     |--------------------------------------------------------------------------
     |
     | This value is the name of your application. This value is used when the
@@ -17,7 +17,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Environment
+    | applications Environment
     |--------------------------------------------------------------------------
     |
     | This value determines the "environment" your application is currently
@@ -30,7 +30,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Debug Mode
+    | applications Debug Mode
     |--------------------------------------------------------------------------
     |
     | When your application is in debug mode, detailed error messages with
@@ -43,7 +43,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | applications URL
     |--------------------------------------------------------------------------
     |
     | This URL is used by the console to properly generate URLs when using
@@ -58,7 +58,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Timezone
+    | applications Timezone
     |--------------------------------------------------------------------------
     |
     | Here you may specify the default timezone for your application, which
@@ -71,7 +71,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Locale Configuration
+    | applications Locale Configuration
     |--------------------------------------------------------------------------
     |
     | The application locale determines the default locale that will be used
@@ -84,7 +84,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Fallback Locale
+    | applications Fallback Locale
     |--------------------------------------------------------------------------
     |
     | The fallback locale determines the locale to use when the current one
@@ -167,7 +167,7 @@ return [
          */
 
         /*
-         * Application Service Providers...
+         * applications Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,

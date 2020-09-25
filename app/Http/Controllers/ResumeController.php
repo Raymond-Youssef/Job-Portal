@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applicant;
 use App\Models\Resume;
+use App\Models\User;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -33,8 +36,8 @@ class ResumeController extends Controller
      */
     public function setDefault(int $id)
     {
-        $user = Auth::user();
         $defaultResume = Resume::findOrFail($id);
+        $user = $defaultResume->user;
         $this->authorize($defaultResume);
         $resumes = Resume::all()->where('user_id',$user->id);
         foreach ($resumes as $resume)
@@ -47,11 +50,13 @@ class ResumeController extends Controller
         return redirect()->back()->with('success','Default resume updated successfully');
     }
 
+
     /**
      * Store the new resume in storage
      *
      * @param Request $request
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
@@ -61,18 +66,28 @@ class ResumeController extends Controller
 
         if($validation->passes())
         {
+            $currentUser = Auth::user();
             $resume = $request->file('resume');
             $name = $resume->getClientOriginalName();
+            if($currentUser->role->title=='admin' && isset($request->applicant_id))
+            {
+                $targetApplicant = Applicant::find($request->applicant_id);
+            }
+            else
+            {
+                $targetApplicant = Auth::user();
+            }
+            $this->authorize('store-resume',$targetApplicant);
             if($path = $request->resume->store('resumes'))
             {
-                $user = Auth::user();
                 $resume = new Resume();
                 $resume->name = $name;
                 $resume->path = $path;
-                if(count($user->resumes)==0) {
+                if(count($targetApplicant->resumes)==0)
+                {
                     $resume->default = true;
                 }
-                $user->saveResume($resume);
+                $targetApplicant->saveResume($resume);
                 return response()->json([
                     'success' => true,
                     'message' => 'Resume Uploaded Successfully',
@@ -80,9 +95,7 @@ class ResumeController extends Controller
                     'resume_path' => asset($resume->path),
                     'class_name' => 'alert alert-success alert-block container',
                 ]);
-
             }
-
         }
         return response()->json([
             'success' => false,
@@ -106,8 +119,8 @@ class ResumeController extends Controller
         Storage::delete($resume->path);
         if($resume->default)
         {
+            $user = $resume->user;
             $resume->delete();
-            $user = Auth::user();
             $newDefaultResume = Resume::firstWhere('user_id', $user->id);
             if($newDefaultResume) {
                 $newDefaultResume->default = true;

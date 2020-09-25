@@ -110,7 +110,9 @@
                     <button class="btn btn-info" type="submit">Upload</button>
                 </form>
             </section>
+            @include('shared.resumeAJAX')
 
         </div>
     </div>
 @endsection
+

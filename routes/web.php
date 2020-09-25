@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApplicantAdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,10 +42,10 @@ Route::get('/searching', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Profile Routes
+| Applicants Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix'=>'profile','middleware'=>'UserMiddleware'],function() {
+Route::group(['prefix'=>'profile'],function() {
     Route::get('/',[ProfileController::class, 'index'])->name('profile.index'); // Show user Profile
     Route::get('/edit',[ProfileController::class, 'edit'])->name('profile.edit');  // Show Edit profile page
     Route::patch('/',[ProfileController::class, 'update'])->name('profile.update'); // Update the user profile
@@ -69,6 +71,9 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
     Route::patch('/password/update',[CompanyProfileController::class, 'updatePassword'])->name('company-password.update'); // Change Company Password
 });
 
+Route::group(['prefix'=>'company'],function (){
+    Route::resource('/job', JobController::class)->except('show');
+});
 
 
 /*
@@ -76,11 +81,27 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 | Admins Routes
 |--------------------------------------------------------------------------
 */
+
+// Admin Profile Routes
 Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],function() {
     Route::get('/',[AdminController::class, 'index'])->name('admin-profile.index'); // Show Company Profile
     Route::get('/edit',[AdminController::class, 'edit'])->name('admin-profile.edit');  // Show Edit Company profile page
     Route::patch('/',[AdminController::class, 'update'])->name('admin-profile.update'); // Update the Company profile
     Route::patch('/password/update',[AdminController::class, 'updatePassword'])->name('admin-password.update'); // Change Company Password
+});
+
+
+
+
+// Dashboard routes
+Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function(){
+
+    Route::get('/', function() {
+        return view('dashboard.index');
+    })->name('dashboard')->middleware('auth');
+
+    Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
+
 });
 
 
@@ -110,9 +131,9 @@ Route::post('image/store',[ImageController::class, 'store'])->name('image.store'
 |--------------------------------------------------------------------------
 */
 
-Route::get('/Application', function (){
-    return view('Application.master');
-})->name('Application');
+Route::get('/applications', function (){
+    return view('applications.master');
+})->name('applications');
 
 
 
