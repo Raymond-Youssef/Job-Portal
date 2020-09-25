@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
 }

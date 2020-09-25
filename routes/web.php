@@ -72,7 +72,7 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 });
 
 Route::group(['prefix'=>'company'],function (){
-    Route::resource('/jobs', JobController::class);
+    Route::resource('/job', JobController::class)->except('show');
 });
 
 

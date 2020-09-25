@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Pagination\Paginator;
 
 class Applicant extends User
 {
@@ -25,7 +26,7 @@ class Applicant extends User
     public static function boot()
     {
         parent::boot();
-
+        Paginator::useBootstrap();
         static::addGlobalScope(function ($query) {
             $query->where('role_id', 1);
         });

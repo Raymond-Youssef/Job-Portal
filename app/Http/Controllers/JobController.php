@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -20,6 +22,7 @@ class JobController extends Controller
         $this->middleware('CompanyMiddleware');
     }
 
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +30,10 @@ class JobController extends Controller
      */
     public function index()
     {
-        return view('jobs.index');
+        $company = Company::find(Auth::user()->id);
+        $jobs = $company->jobs()->paginate(10);
+        return view('jobs.index',['jobs' => $jobs]);
+
     }
 
     /**
@@ -51,26 +57,16 @@ class JobController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function edit($id)
     {
-        //
+        // TODO: make a job edit page
     }
 
     /**
@@ -82,7 +78,7 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // TODO: make a job update function
     }
 
     /**
@@ -93,6 +89,6 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // TODO: make a job destroy function
     }
 }

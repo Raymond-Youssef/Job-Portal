@@ -20,7 +20,7 @@
                     </li>
                 @elseif(Auth::user()->role->title=='company')
                     <li>
-                        <a href="{{ route('jobs.index') }}">My Jobs</a>
+                        <a href="{{ route('job.index') }}">My Jobs</a>
                     </li>
                 @elseif(Auth::user()->role->title=='admin')
                     <li>

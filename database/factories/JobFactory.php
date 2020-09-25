@@ -26,12 +26,12 @@ class JobFactory extends Factory
         $skill3 = $this->faker->word;
         $skills = '["'.$skill1.'","'.$skill2.'","'.$skill3.'"]';
         return [
-            'job_title' => $this->faker->jobTitle,
-            'job_description' => $this->faker->text,
+            'title' => $this->faker->jobTitle,
+            'description' => $this->faker->text,
             'skills' => $skills,
             'country' => $this->faker->country,
             'city' => $this->faker->city,
-            'company_id' =>$this->faker->numberBetween(1,10),
+            'company_id' =>2,
         ];
     }
 }

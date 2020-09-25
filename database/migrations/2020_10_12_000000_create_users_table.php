@@ -49,6 +49,10 @@ class CreateUsersTable extends Migration
             $table->text('cover_letter')->nullable();
             $table->foreignId('image_id')->nullable()->constrained();
             $table->foreignId('role_id')->default('1')->constrained();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')
+                ->on('users')
+                ->references('id');
             $table->rememberToken();
             $table->timestamps();
         });

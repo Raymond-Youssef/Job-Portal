@@ -15,8 +15,8 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('job_title');
-            $table->text('job_description');
+            $table->string('title');
+            $table->text('description');
             $table->json('skills')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();

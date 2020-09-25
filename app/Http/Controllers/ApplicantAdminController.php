@@ -26,7 +26,7 @@ class ApplicantAdminController extends Controller
      */
     public function index()
     {
-        $applicants = Applicant::simplePaginate(20);
+        $applicants = Applicant::paginate(20);
         return view('dashboard.applicants.index',['applicants'=>$applicants]);
     }
 
