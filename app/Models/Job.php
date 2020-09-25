@@ -10,11 +10,22 @@ class Job extends Model
     use HasFactory;
 
     protected $fillable = [
-      'title', 'description', 'skills', 'city', 'country'
+      'title', 'description', 'skills', 'city', 'country','company_id',
     ];
 
     public function company()
     {
         return $this->belongsTo('App\Models\Company');
     }
+
+    public function city()
+    {
+        return $this->company()->city;
+    }
+
+    public function country()
+    {
+        return $this->company()->country;
+    }
+
 }

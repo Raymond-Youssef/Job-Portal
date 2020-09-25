@@ -16,7 +16,7 @@
                 @else {{-- User Routes --}}
                 @if(Auth::user()->role->title=='user')
                     <li>
-                        <a href="{{ route('applications') }}">Dashboard</a>
+                        <a href="{{ route('applications') }}">My Applications</a>
                     </li>
                 @elseif(Auth::user()->role->title=='company')
                     <li>

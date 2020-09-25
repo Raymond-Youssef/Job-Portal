@@ -8,8 +8,11 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicantAdminController;
+use App\Http\Controllers\SearchController;
+use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Console\Input;
 
 
 /*
@@ -34,9 +37,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/searching', function () {
-    return view('searching.search');
-})->name('searching');
+Route::get('/search', function () {
+    return view('search.search');
+})->name('search');
 
 
 
@@ -136,6 +139,17 @@ Route::get('/applications', function (){
 })->name('applications');
 
 
+Route::group(['prefix'=>'search', 'middleware'=>'auth'],function() {
+    Route::get('/jobs', [SearchController::class,'jobs'])->name('search.jobs');
+    Route::get('/companies', [SearchController::class, 'companies'])->name('search.companies');
+    Route::get('/applicants', [SearchController::class, 'applicants'])->name('search.applicants');
+});
 
 
-//Route::resource('/resume',ResumeController::class);
+//Route::any('/test',function(){
+//    $keyWord = request('search');
+//    $jobs = Job::where('title','LIKE','%'.$keyWord.'%')->orWhere('description','LIKE','%'.$keyWord.'%')->get();
+////    if(count($user) > 0)
+////        return view('welcome')->withDetails($user)->withQuery($keyWord);
+////    else return view ('welcome')->withMessage('No Details found. Try to search again!');
+//})->name('search');

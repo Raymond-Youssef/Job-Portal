@@ -11,18 +11,6 @@
             width:300px;
 
         }
-        .location{
-            width:100px;
-
-        }
-
-        .search-btn{
-            height:50px;
-            width:120px;
-            background:#539ADD;
-            border:none;
-            color:#000;
-        }
     </style>
 @endsection
 
@@ -33,14 +21,16 @@
                 <div class="col-md-6 intro-info order-md-first order-last" data-aos="zoom-in" data-aos-delay="100">
                     <h2>Find Your Dream Job From Top-Class Companies</h2>
                     <div>
-                        <form>
+                        <form action="{{route('search.jobs')}}" method="GET">
+                            @csrf
+                            @method('GET')
                             <input type ="text" class="search-field job" placeholder="Job Title, Company Name.." name="search">
-                            <a href="{{ route('searching') }}" class="btn-get-started">Search</a>
+                            <button class="btn btn-get-started" type="submit">Search</button>
                         </form>
                     </div>
                 </div>
                 <div class="col-md-6 intro-img order-md-last order-first" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+                    <img src="{{asset('assets/img/features-1.svg')}}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
