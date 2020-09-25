@@ -120,6 +120,7 @@ Route::group(['prefix'=>'search', 'middleware'=>'auth'],function() {
     Route::get('/companies', [SearchController::class, 'companies'])->name('search.companies');
     Route::get('/companies/{company}',[SearchController::class, 'showCompany'])->name('search.companies.show');
     Route::get('/applicants', [SearchController::class, 'applicants'])->name('search.applicants');
+    Route::get('/applicants/{applicant}',[SearchController::class, 'showApplicant'])->name('search.applicants.show');
 });
 
 

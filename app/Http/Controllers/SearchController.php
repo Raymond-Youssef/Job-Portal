@@ -37,7 +37,6 @@ class SearchController extends Controller
         ]);
     }
 
-
     /**
      * Shows the specified Job
      * @param Job $job
@@ -111,5 +110,14 @@ class SearchController extends Controller
         ]);
     }
 
+    /**
+     * Shows the specified Job
+     * @param Applicant $applicant
+     * @return View
+     */
+    public function showApplicant(Applicant $applicant)
+    {
+        return view('search.show.applicant',['applicant' => $applicant]);
+    }
 
 }

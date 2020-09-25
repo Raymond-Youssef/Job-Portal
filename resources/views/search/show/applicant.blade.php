@@ -9,7 +9,7 @@
 
     <div class="container contain">
         <main>
-            <h1 class="text-secondary">Companies:</h1>
+            <h1 class="text-secondary">Applicants:</h1>
             <article>
                 <div class="card">
                     <div class="card-body">
@@ -20,17 +20,22 @@
 
                                     <!-- Card content -->
                                     <blockquote class="blockquote">
-                                        <p class="h4 text-primary">{{$company->name}}</p>
-                                        <footer class="blockquote-footer">{{$company->city}}, {{$company->country}}</footer>
+                                        <p class="h4 text-primary">{{$applicant->name}}</p>
+                                        <footer class="blockquote-footer">{{$applicant->job_title}}</footer>
                                     </blockquote>
-                                    <div id="email">
-                                        <h6 class="text-info h6">Email:</h6>
-                                        <p class="h3">{{$company->email}}</p>
+                                    <div id="location">
+                                        <h6 class="text-info h6">Location:</h6>
+                                        <p class="h3">{{$applicant->city}}, {{$applicant->country}}</p>
                                     </div>
                                     <hr>
-                                    @if($creationDate = $company->birth_date)
+                                    <div id="email">
+                                        <h6 class="text-info h6">Email:</h6>
+                                        <p class="h3">{{$applicant->email}}</p>
+                                    </div>
+                                    <hr>
+                                    @if($creationDate = $applicant->birth_date)
                                         <div id="creation-date">
-                                            <h6 class="text-info h6">Creation Date:</h6>
+                                            <h6 class="text-info h6">Birth Date:</h6>
                                             <em>{{ $creationDate }}</em>
                                         </div>
                                     @endif
@@ -39,10 +44,10 @@
 
 
                                 <div class=" col-md-2  col-sm-4 col-xs-0">
-                                    @if($image = $company->image)
+                                    @if($image = $applicant->image)
                                         <img src="{{asset($image->path)}}" class="img-thumbnail" alt="..." >
                                     @else
-                                        <img src="{{asset('assets/img/default_company_profile.png')}}" class="img-thumbnail" alt="...">
+                                        <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail" alt="...">
                                     @endif
                                 </div>
 
@@ -55,12 +60,14 @@
         </main>
 
 
+
+        {{-- Side Bar --}}
         <aside>
             <div class="sidebar-text">
                 <h2>Hello, {{Auth::user()->name}}</h2>
-                <h1>Companies Search</h1>
+                <h1>applicants Search</h1>
                 <section>
-                    <form action="{{route('search.companies')}}" method="get">
+                    <form action="{{route('search.applicants')}}" method="get">
                         @csrf
                         @method('get')
                         <div class="form-group row">
@@ -76,7 +83,7 @@
                     </form>
                     <ul>
                         <li><a href="{{route('search.jobs')}}">Search For Jobs</a></li>
-                        <li><a href="{{route('search.applicants')}}">Search For Applicants</a></li>
+                        <li><a href="{{route('search.companies')}}">Search For Companies</a></li>
                     </ul>
                 </section>
             </div>

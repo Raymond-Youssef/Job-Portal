@@ -27,7 +27,7 @@
                                             <h6 class="text-info">Occupation: {{$applicant->job_title}}</h6>
                                             <hr>
                                             <!-- Button -->
-                                            <a href="#" class="btn btn-primary">Contact Info</a>
+                                            <a href="{{route('search.applicants.show',$applicant)}}" class="btn btn-primary">Contact Info</a>
                                         </div>
                                         <div class=" col-md-2  col-sm-4 col-xs-0">
                                             @if($image = $applicant->image)
