@@ -2,6 +2,7 @@
 
 
 @section('content')
+
     <div class="container">
         <div class="form">
             <h2 class="display-4"></span>{{ __('Job Announcement') }}</h2>
@@ -53,9 +54,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                    <label for="city" class="col-md-4 col-form-label  text-md-right">{{ __('City') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" required autocomplete="city" autofocus>
 
                         @error('city')
@@ -65,12 +66,12 @@
                         @enderror
 
                     </div>
-                </div>
+               
 
-                <div class="form-group row">
-                    <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+                <!-- <div class="form-group row"> -->
+                    <label for="country" class=" col-form-label text-md-right">{{ __('Country') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <input id="country" type="text" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country" autofocus>
 
                         @error('country')
@@ -80,6 +81,7 @@
                         @enderror
 
                     </div>
+                </div>
                 </div>
 
                 <div class="form-group row mb-0">
