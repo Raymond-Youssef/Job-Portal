@@ -67,28 +67,40 @@ class ApplicationsController extends Controller
             'resume_id' => 'required|numeric',
             'job_id' => 'required|numeric',
         ]);
-        if($resume = Resume::find($request->resume_id))
+        $user = Auth::user();
+        if(count(Application::where('job_id','=',$request->job_id)->where('user_id','=',$user->id)->get())!=0)
         {
-            $this->authorize('store-applications', $resume);
-            $application = new Application();
-            if($job = Job::find($request->job_id))
-            {
-                $application->job_id = $request->job_id;
-            }
-            else
-            {
-                return redirect()->back()->with(['error'=>'Job does NOT exist']);
-            }
-            $application->user_id = Auth::user()->id;
-            $application->resume_id = $resume->id;
-            if($application->save())
-            {
-                return redirect()->route('search.jobs')->with(['success' => 'You Applied Successfully!']);
-            }
+            return redirect()->route('search.jobs')->with(['error'=>'You already applied for this job']);
         }
         else
         {
-            return redirect()->back()->with(['error'=>'Resume does NOT exist']);
+            if($resume = Resume::find($request->resume_id))
+            {
+                $this->authorize('store-applications', $resume);
+                $application = new Application();
+                if($job = Job::find($request->job_id))
+                {
+                    $application->job_id = $request->job_id;
+                }
+                else
+                {
+                    return redirect()->back()->with(['error'=>'Job does NOT exist']);
+                }
+                $application->user_id = $user->id;
+                $application->resume_id = $resume->id;
+                if($application->save())
+                {
+                    return redirect()->route('search.jobs')->with(['success' => 'You Applied Successfully!']);
+                }
+                else
+                {
+                    return redirect()->back()->with(['error'=>'An error occurred, try again later']);
+                }
+            }
+            else
+            {
+                return redirect()->back()->with(['error'=>'Resume does NOT exist']);
+            }
         }
     }
 
