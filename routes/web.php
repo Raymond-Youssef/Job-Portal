@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\CompanyAdminController;
 use App\Http\Controllers\CompanyProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
@@ -96,6 +97,10 @@ Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function()
     Route::resource('/company', CompanyAdminController::class)->except(['create','store']);
     Route::post('/company/verify/{company}', [CompanyAdminController::class, 'verify'])->name('company.verify');
     Route::post('/company/block/{company}', [CompanyAdminController::class, 'block'])->name('company.block');
+    Route::get('/jobs',[DashboardController::class,'jobs'])->name('dashboard.jobs');
+    Route::delete('/jobs/{job}',[DashboardController::class, 'deleteJob'])->name('dashboard.jobs.delete');
+    Route::get('/applications',[DashboardController::class,'applications'])->name('dashboard.applications');
+    Route::post('/applications',[DashboardController::class, 'deleteApplication'])->name('dashboard.applications.delete');
 });
 
 /*

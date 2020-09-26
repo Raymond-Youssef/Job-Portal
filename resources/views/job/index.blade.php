@@ -28,7 +28,7 @@
                                         <hr>
                                         <div id="skill">
                                             <h6 class="text-info h6">Skills Required:</h6>
-                                            <em>{{ str_replace('',',', str_replace(array('"','[',']'),'',$job->skills) )}}</em>
+                                            <em>{{ str_replace('',',', str_replace(array('"','[',']'),'',$job->skills)) }}</em>
                                         </div>
                                         <hr>
                                         <div id="description">

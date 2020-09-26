@@ -33,8 +33,20 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('company.index')}}">
-                            <span data-feather="briefcase"></span>
+                            <span data-feather="archive"></span>
                             Companies
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('dashboard.jobs')}}">
+                            <span data-feather="briefcase"></span>
+                            Jobs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('dashboard.applications')}}">
+                            <span data-feather="clipboard"></span>
+                            Applications
                         </a>
                     </li>
                 </ul>
@@ -50,6 +62,22 @@
                     <li class="nav-item nav-link">
                         <span data-feather="info"></span>
                         Companies Number: {{count(\App\Models\Company::all())}}
+                    </li>
+                    <li class="nav-item nav-link">
+                        <span data-feather="info"></span>
+                        Number Of Jobs: {{count(\App\Models\Job::all())}}
+                    </li>
+                    <li class="nav-item nav-link">
+                        <span data-feather="info"></span>
+                        Number Of Applications: {{count(\App\Models\Application::all())}}
+                    </li>
+                    <li class="nav-item nav-link">
+                        <span data-feather="info"></span>
+                        Employed Applicants: {{count(\App\Models\Applicant::where('company_name','!=',null)->get())}}
+                    </li>
+                    <li class="nav-item nav-link">
+                        <span data-feather="info"></span>
+                        Unemployed Applicants: {{count(\App\Models\Applicant::where('company_name','=',null)->get())}}
                     </li>
                 </ul>
 
