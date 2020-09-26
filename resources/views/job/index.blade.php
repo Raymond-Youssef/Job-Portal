@@ -38,7 +38,7 @@
                                         <hr>
                                         <p><span class="text-success h5">Last Updated At: </span>{{$job->updated_at}}</p>
                                     </div>
-                                    <a href="{{route('job.edit',$job)}}" class="btn btn-success articles-button" style="top: 2rem;">Edit Job</a>
+                                    <a href="{{route('job.show',$job)}}" class="btn btn-info articles-button" style="top: 2rem;">View Job Info</a>
                                     <form action="{{route('job.destroy',$job)}}" method="POST">
                                         @csrf
                                         @method('DELETE')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\Company;
 use App\Models\Job;
 use Exception;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -25,7 +27,6 @@ class JobController extends Controller
         $this->middleware('auth');
         $this->middleware('CompanyMiddleware');
     }
-
 
     /**
      * Display a listing of Jobs
@@ -63,8 +64,8 @@ class JobController extends Controller
         $company = Auth::user();
         // Validation
         $this->validate($request,[
-           'title' => 'required|string|max:255|min:5',
-           'description' => 'required|min:10',
+            'title' => 'required|string|max:255|min:5',
+            'description' => 'required|min:10',
             'skills' => 'nullable|string',
             'city' => 'required|max:255',
             'country' => 'required|max:255',
@@ -103,6 +104,50 @@ class JobController extends Controller
         return view('job.edit',['job'=>$job]);
     }
 
+    /**
+     * Show more information about the Job
+     *
+     * @param Job $job
+     * @return View
+     */
+    public function show(Job $job)
+    {
+        $applications = $job->applications()->paginate(10);
+        return view('job.show',[
+            'job' => $job,
+            'applications' => $applications,
+        ]);
+    }
+
+    /**
+     * Updates the status of an application.
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     * @throws ValidationException
+     */
+    public function updateStatus(Request $request)
+    {
+        $this->validate($request,[
+            'status' => [
+                'required', Rule::in(['Accepted', 'Rejected']),
+            ],
+            'job_id' => 'required|numeric',
+            'applicant_id' => 'required|numeric'
+        ]);
+        if($application = Application::where('job_id','=',$request->job_id)->where('applicant_id','=',$request->applicant_id)->first())
+        {
+            $this->authorize('update-application-status', $application);
+            $application->status = $request->status;
+            $application->save();
+            return redirect()->back()->with(['success' => 'Status updated successfully']);
+        }
+        else
+        {
+            return redirect()->back()->with(['error' => 'No application found']);
+        }
+
+    }
 
     /**
      * Update the specified resource in storage.

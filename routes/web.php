@@ -67,6 +67,7 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 
 Route::group(['prefix'=>'company'],function (){
     Route::resource('/job', JobController::class);
+    Route::post('/job/application/',[JobController::class, 'updateStatus'])->name('application.updateStatus'); // Change application status
 });
 
 

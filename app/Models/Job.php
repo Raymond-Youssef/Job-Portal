@@ -28,4 +28,9 @@ class Job extends Model
         return $this->company()->country;
     }
 
+    public function applications()
+    {
+        return $this->hasMany('App\Models\Application');
+    }
+
 }
