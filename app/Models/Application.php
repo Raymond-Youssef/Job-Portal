@@ -24,6 +24,19 @@ class Application extends Model
         return $this->belongsTo('App\Models\Job');
     }
 
+    public function company()
+    {
+//        return $this->belongsToMany('App\Models\Company')->using('App\Models\Job');
+        return $this->hasOneThrough(
+            'App\Models\Company',
+            'App\Models\Job',
+            'company_id', // Foreign key on cars table...
+            'id', // Foreign key on owners table...
+            'job_id', // Local key on mechanics table...
+            'id' // Local key on cars table...
+        );
+    }
+
     public function applicant()
     {
         return $this->belongsTo('App\Models\Applicant');

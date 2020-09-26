@@ -30,10 +30,14 @@ class CreateApplicationsTable extends Migration
 
         Schema::create('applications', function (Blueprint $table) {
             $table->foreignId('job_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->primary(['job_id','user_id']);
+            $table->unsignedBigInteger('applicant_id');
+            $table->foreign('applicant_id')
+                ->on('users')
+                ->references('id')
+                ->onDelete('cascade');
+            $table->primary(['job_id','applicant_id']);
             $table->foreignId('resume_id')->constrained()->onDelete('cascade');
-            $table->enum('status',['applied','rejected','accepted'])->default('applied');
+            $table->enum('status',['Applied','Rejected','Accepted'])->default('applied');
             $table->timestamps();
         });
     }

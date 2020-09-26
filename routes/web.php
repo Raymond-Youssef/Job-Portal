@@ -33,14 +33,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Auth::routes();
-
 Route::get('/search', function () {
     return view('search.search');
 })->name('search');
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -57,10 +53,6 @@ Route::group(['prefix'=>'profile'],function() {
     Route::patch('/resume/{resume}', [ResumeController::class,'setDefault'])->name('resume.update'); // Update default resume
 });
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Company Routes
@@ -74,7 +66,7 @@ Route::group(['prefix'=>'company/profile', 'middleware'=>'CompanyMiddleware'],fu
 });
 
 Route::group(['prefix'=>'company'],function (){
-    Route::resource('/job', JobController::class)->except('show');
+    Route::resource('/job', JobController::class);
 });
 
 
@@ -83,7 +75,6 @@ Route::group(['prefix'=>'company'],function (){
 | Admins Routes
 |--------------------------------------------------------------------------
 */
-
 // Admin Profile Routes
 Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],function() {
     Route::get('/',[AdminController::class, 'index'])->name('admin-profile.index'); // Show Company Profile
@@ -92,16 +83,11 @@ Route::group(['prefix'=>'admin/profile', 'middleware'=>'AdminMiddleware'],functi
     Route::patch('/password/update',[AdminController::class, 'updatePassword'])->name('admin-password.update'); // Change Company Password
 });
 
-
-
-
 // Dashboard routes
 Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function(){
-
     Route::get('/', function() {
         return view('dashboard.index');
     })->name('dashboard')->middleware('auth');
-
     Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
 
 });
@@ -141,34 +127,4 @@ Route::resource('/application', ApplicationsController::class)->except('create')
 Route::get('/application/create/{job}',[ApplicationsController::class, 'create'])->name('application.create');
 
 
-/*
-|--------------------------------------------------------------------------
-| Applications Routes
-|--------------------------------------------------------------------------
-*/
-//Route::group(['prefix'=>'application'],function() {
-//    Route::get('/',);
-//
-//});
 
-/*
-|--------------------------------------------------------------------------
-| Test Routes
-|--------------------------------------------------------------------------
-*/
-
-//Route::get('/applications', function (){
-//    return view('applications.master');
-//})->name('applications');
-
-
-
-
-
-//Route::any('/test',function(){
-//    $keyWord = request('search');
-//    $jobs = Job::where('title','LIKE','%'.$keyWord.'%')->orWhere('description','LIKE','%'.$keyWord.'%')->get();
-////    if(count($user) > 0)
-////        return view('welcome')->withDetails($user)->withQuery($keyWord);
-////    else return view ('welcome')->withMessage('No Details found. Try to search again!');
-//})->name('search');

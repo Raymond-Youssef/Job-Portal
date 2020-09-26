@@ -46,6 +46,12 @@ class Applicant extends User
     }
 
 
+    public function applications()
+    {
+        return $this->hasMany('App\Models\Application');
+    }
+
+
 
     public function resumes()
     {

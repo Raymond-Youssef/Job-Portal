@@ -17,6 +17,10 @@ use App\Models\Resume;
 class ApplicationsController extends Controller
 {
 
+
+    //Application::where('job_id','=',$request->job_id)->where('applicant_id','=',$user->id)->get()
+    //Application::where('applicant_id','=',1)->get()
+
     /**
      * ApplicationsController constructor.
      */
@@ -30,11 +34,12 @@ class ApplicationsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return void
+     * @return View
      */
     public function index()
     {
-        echo 'hello';
+        $applications = Application::where('applicant_id','=',Auth::user()->id)->get();
+        return view('application.index',['applications' => $applications]);
     }
 
     /**
@@ -68,7 +73,7 @@ class ApplicationsController extends Controller
             'job_id' => 'required|numeric',
         ]);
         $user = Auth::user();
-        if(count(Application::where('job_id','=',$request->job_id)->where('user_id','=',$user->id)->get())!=0)
+        if(count(Application::where('job_id','=',$request->job_id)->where('applicant_id','=',$user->id)->get())!=0)
         {
             return redirect()->route('search.jobs')->with(['error'=>'You already applied for this job']);
         }
@@ -86,7 +91,7 @@ class ApplicationsController extends Controller
                 {
                     return redirect()->back()->with(['error'=>'Job does NOT exist']);
                 }
-                $application->user_id = $user->id;
+                $application->applicant_id = $user->id;
                 $application->resume_id = $resume->id;
                 if($application->save())
                 {
