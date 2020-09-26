@@ -34,6 +34,7 @@ class ApplicantFactory extends Factory
             'cover_letter' =>$this->faker->text,
             'role_id' => 1,
             'company_name' => $this->faker->company,
+            'image_id' => $this->faker->numberBetween(1,203),
             'remember_token' => Str::random(10),
         ];
     }

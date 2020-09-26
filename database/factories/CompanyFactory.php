@@ -31,6 +31,7 @@ class CompanyFactory extends Factory
             'phone' => $this->faker->phoneNumber,
             'birth_date' => $this->faker->dateTime,
             'role_id' => 2,
+            'image_id' => $this->faker->numberBetween(1,203),
             'remember_token' => Str::random(10),
         ];
     }
