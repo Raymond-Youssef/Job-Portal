@@ -92,7 +92,10 @@ Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function()
     })->name('dashboard')->middleware('auth');
     Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
     Route::post('/applicant/verify/{applicant}', [ApplicantAdminController::class, 'verify'])->name('applicant.verify');
+    Route::post('/applicant/block/{applicant}', [ApplicantAdminController::class, 'block'])->name('applicant.block');
     Route::resource('/company', CompanyAdminController::class)->except(['create','store']);
+    Route::post('/company/verify/{company}', [CompanyAdminController::class, 'verify'])->name('company.verify');
+    Route::post('/company/block/{company}', [CompanyAdminController::class, 'block'])->name('company.block');
 });
 
 /*

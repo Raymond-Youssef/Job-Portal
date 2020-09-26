@@ -31,6 +31,10 @@
                                     <li><span>Date of Birth: </span>{{ $birth_date }}</li>
                                 @endif
                             </ul>
+                            <form method="POST" action="{{route('applicant.block', $applicant)}}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger" style="position: absolute; bottom: 2rem; right: 7rem;">Block</button>
+                            </form>
                             <form method="POST" action="{{route('applicant.verify',$applicant)}}">
                                 @csrf
                                 <button type="submit" class="btn btn-success" style="position: absolute; bottom: 2rem; right: 2rem;">Verify</button>

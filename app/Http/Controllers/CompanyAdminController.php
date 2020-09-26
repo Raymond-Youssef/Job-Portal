@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\Company;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -118,6 +119,46 @@ class CompanyAdminController extends Controller
         $company->save();
 
         return redirect()->route('company.index')->with(['success' => 'Company Edited Successfully']);
+    }
+
+    /**
+     * Verify the specified company from storage.
+     *
+     * @param Company $company
+     * @return RedirectResponse
+     */
+    public function verify(Company $company)
+    {
+        if($company = Company::find($company->id))
+        {
+            $company->email_verified_at = Carbon::now();
+            $company->save();
+            return redirect()->route('company.index')->with(['success' => 'Company Verified Successfully']);
+        }
+        else
+        {
+            return redirect()->route('company.index')->with(['error' => 'Company not found']);
+        }
+    }
+
+    /**
+     * Block the specified Company from storage.
+     *
+     * @param Company $company
+     * @return RedirectResponse
+     */
+    public function block(Company $company)
+    {
+        if($company = Company::find($company->id))
+        {
+            $company->blocked_at = Carbon::now();
+            $company->save();
+            return redirect()->route('company.index')->with(['success' => 'Company Blocked Successfully']);
+        }
+        else
+        {
+            return redirect()->route('company.index')->with(['error' => 'Company not found']);
+        }
     }
 
     /**

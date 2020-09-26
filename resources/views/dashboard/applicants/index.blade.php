@@ -5,28 +5,36 @@
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-            <th>#</th>
-            <th>Verified</th>
             <th>Name</th>
             <th>Job Title</th>
             <th>Email</th>
+            <th>Info</th>
             <th>Edit</th>
+            <th>Verified</th>
+            <th>Blocked</th>
         </tr>
         </thead>
         <tbody>
         @foreach ($applicants as $applicant)
             <tr>
-                <td><a href="{{route('applicant.show',$applicant)}}">{{$applicant->id}}</a></td>
+                <td>{{$applicant->name}}</td>
+                <td>{{$applicant->job_title}}</td>
+                <td>{{$applicant->email}}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{route('applicant.show',$applicant)}}">Show</a>
+                </td>
+                <td>
+                    <a href="{{route('applicant.edit', $applicant)}}" class="btn btn-secondary">Edit</a>
+                </td>
                 <td>
                     @if($applicant->email_verified_at)
                         <span data-feather="award"></span>
                     @endif
                 </td>
-                <td>{{$applicant->name}}</td>
-                <td>{{$applicant->job_title}}</td>
-                <td>{{$applicant->email}}</td>
                 <td>
-                    <a href="{{route('applicant.edit', $applicant)}}" class="btn btn-info">Edit</a>
+                    @if($applicant->blocked_at)
+                        <span data-feather="slash"></span>
+                    @endif
                 </td>
             </tr>
         @endforeach

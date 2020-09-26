@@ -31,6 +31,14 @@
                                     <li><span>Creation Date: </span>{{ $birth_date }}</li>
                                 @endif
                             </ul>
+                            <form method="POST" action="{{route('company.block', $company)}}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger" style="position: absolute; bottom: 2rem; right: 7rem;">Block</button>
+                            </form>
+                            <form method="POST" action="{{route('company.verify',$company)}}">
+                                @csrf
+                                <button type="submit" class="btn btn-success" style="position: absolute; bottom: 2rem; right: 2rem;">Verify</button>
+                            </form>
                         </div>
                     </div>
 

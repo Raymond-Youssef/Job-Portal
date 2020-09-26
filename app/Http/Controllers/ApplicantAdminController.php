@@ -128,10 +128,36 @@ class ApplicantAdminController extends Controller
      */
     public function verify(Applicant $applicant)
     {
-        $applicant = Applicant::find($applicant->id);
-        $applicant->email_verified_at = Carbon::now();
-        $applicant->save();
-        return redirect()->route('applicant.index')->with(['success' => 'Applicant Verified Successfully']);
+        if($applicant = Applicant::find($applicant->id))
+        {
+            $applicant->email_verified_at = Carbon::now();
+            $applicant->save();
+            return redirect()->route('applicant.index')->with(['success' => 'Applicant Verified Successfully']);
+        }
+        else
+        {
+            return redirect()->route('applicant.index')->with(['error' => 'Applicant not found']);
+        }
+    }
+
+    /**
+     * Verify the specified applicant from storage.
+     *
+     * @param Applicant $applicant
+     * @return RedirectResponse
+     */
+    public function block(Applicant $applicant)
+    {
+        if($applicant = Applicant::find($applicant->id))
+        {
+            $applicant->blocked_at = Carbon::now();
+            $applicant->save();
+            return redirect()->route('applicant.index')->with(['success' => 'Applicant Blocked Successfully']);
+        }
+        else
+        {
+            return redirect()->route('applicant.index')->with(['error' => 'Applicant not found']);
+        }
     }
 
     /**
