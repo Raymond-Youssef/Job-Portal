@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -9,10 +10,8 @@ use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApplicantAdminController;
 use App\Http\Controllers\SearchController;
-use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Console\Input;
 
 
 /*
@@ -132,6 +131,15 @@ Route::group(['prefix'=>'search', 'middleware'=>'auth'],function() {
 Route::post('image/store',[ImageController::class, 'store'])->name('image.store'); // Change Profile Picture
 
 
+/*
+|--------------------------------------------------------------------------
+| Applications Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::resource('/application', ApplicationsController::class)->except('create');
+Route::get('/application/create/{job}',[ApplicationsController::class, 'create'])->name('application.create');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -149,9 +157,9 @@ Route::post('image/store',[ImageController::class, 'store'])->name('image.store'
 |--------------------------------------------------------------------------
 */
 
-Route::get('/applications', function (){
-    return view('applications.master');
-})->name('applications');
+//Route::get('/applications', function (){
+//    return view('applications.master');
+//})->name('applications');
 
 
 

@@ -32,7 +32,8 @@ class CreateApplicationsTable extends Migration
             $table->foreignId('job_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->primary(['job_id','user_id']);
-            $table->enum('status',['applied','rejected','accepted']);
+            $table->foreignId('resume_id')->constrained()->onDelete('cascade');
+            $table->enum('status',['applied','rejected','accepted'])->default('applied');
             $table->timestamps();
         });
     }

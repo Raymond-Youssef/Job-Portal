@@ -1,24 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
-</style>
     <div class="container">
         <div class="col-xl-10 offset-xl-1">
-            <h1 class="display-4 text-center">{{ $user->name }}</h1>
-
-
-            {{-- Personal Information--}}
+            <h1 class="display-4 text-center">{{ $user->name }}</h1> {{-- Personal Information--}}
             <section id="personal-information">
                 <div class="row">
                     <div class="col-lg-8">
                         <form method="POST" action="{{route('profile.update')}}">
                             @csrf
                             @method('PATCH')
-
-                            <h3 class="text-primary">Personal Information:</h3>
-                            <ul style="list-style:none;">
-
+                            <h3 class="text-primary">Personal Information:</h3> <ul style="list-style:none;">
                                 <li>
                                     @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -96,35 +88,17 @@
                             @enderror
                             <div class="form-group">
                                 <ul>
-                                    <textarea class="form-control" id="cover-letter" name="cover_letter" rows="3"></textarea>
+                                    <textarea class="form-control" id="cover-letter" name="cover_letter" rows="3">{{$user->cover_letter}}</textarea>
                                     <label for="cover-letter" class="text-muted">Cover letters should be between 150 and 500 characters</label>
-                                </ul>
-                            </div>
-                            <button type="submit" class="btn btn-dark">Save Profile</button>
-                        </form>
-<<<<<<< HEAD
 
-                        @if($coverLetter = $user->cover_letter)
-                <section id="cover-letter">
-               
-                
-                <form method="POST" action="{{route('profile.update')}}">
-                
-                <h3 class="text-primary">Cover Letter:</h3>  
-                <div class="form-row">
-                <div class="col-11"> 
-                 <textarea class="form-control"  rows="3" style="margin-left:40px;">{{$coverLetter}}</textarea>
-                 </div>
-  </div>
-                 <br><button type="submit" class="btn btn-dark"  style="margin-left:40px;">Edit Cover Letter</button><br>
-  
-</form>
-                    
-                </section>
-            @endif
-=======
+                                </ul>
+
+                            </div>
+                            <ul>
+                                <button type="submit" class="btn btn-dark">Save Profile</button>
+                            </ul>
+                        </form>
                         <hr>
->>>>>>> 123deba6a3b94fd38cf48a9ab01d004591716ba4
                         <form method="POST" action="{{route('password.update')}}">
                             @csrf
                             @method('PATCH')
@@ -177,13 +151,6 @@
             </section>
 
             <hr>
-
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> 123deba6a3b94fd38cf48a9ab01d004591716ba4
-
         </div>
     </div>
 @endsection

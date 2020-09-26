@@ -47,9 +47,11 @@
                                         <img src="{{asset('assets/img/default_company_profile.png')}}" class="img-thumbnail" alt="...">
                                     @endif
                                     {{-- Button --}}
-                                    <a href="#" class="btn btn-primary" style="position: absolute; right: 2rem; bottom: 2rem;">
-                                        Apply
-                                    </a>
+                                    @if(Auth::user()->role->title=='user')
+                                        <a href="{{route('application.create',$job)}}" class="btn btn-primary" style="position: absolute; right: 2rem; bottom: 2rem;">
+                                            Apply
+                                        </a>
+                                    @endif
                                 </div>
 
                             </div>

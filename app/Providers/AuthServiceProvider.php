@@ -52,5 +52,9 @@ class AuthServiceProvider extends ServiceProvider
            return $user->role->title=='admin';
         });
 
+
+        Gate::define('store-applications', function (User $user, Resume $resume){
+           return ($user->role->title=='admin' || $resume->user->is($user));
+        });
     }
 }

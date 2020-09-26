@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = [
+        'user_id', 'job_id',
+    ];
+
+    public $incrementing = false;
 }
