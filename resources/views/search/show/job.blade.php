@@ -26,6 +26,9 @@
                                     <div id="company">
                                         <h6 class="text-info h6">Company:</h6>
                                         <p class="h3">{{$job->company->name}}</p>
+                                        @if($job->company->email_verified_at)
+                                            Verified Company <span data-feather="award"></span>
+                                        @endif
                                     </div>
                                     <hr>
                                     <div id="skill">
@@ -92,4 +95,6 @@
         </aside>
         {{--End Sidebar--}}
     </div>
+
+    <script src="{{asset('js/dashboard.js')}}"></script>
 @endsection

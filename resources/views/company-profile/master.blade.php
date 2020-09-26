@@ -14,6 +14,11 @@
                         <div class="hero-info">
                             <h3 class="text-primary">Company Information:</h3>
                             <ul>
+                                @if($company->email_verified_at)
+                                    <li>
+                                        Verified Company <span data-feather="award"></span>
+                                    </li>
+                                @endif
                                 <li><span>E-mail: </span> {{ $company->email }}</li>
                                 @if($city = $company->city)
                                     <li><span>City: </span> {{ $city }}</li>
@@ -49,4 +54,6 @@
 
         </div>
     </div>
+
+    <script src="{{asset('js/dashboard.js')}}"></script>
 @endsection

@@ -13,7 +13,10 @@
                         <div class="hero-info">
                             <h3 class="text-primary">Personal Information:</h3>
                             <ul>
-                                <li><span>E-mail: </span> {{ $user->email }}</li>
+                                <li>E-mail:  {{ $user->email }}</li>
+                                @if($user->email_verified_at)
+                                    <li>Verified Applicant <span data-feather="award"></span></li>
+                                @endif
                                 @if($job_title = $user->job_title)
                                     <li><span>Job Title: </span> {{ $job_title }}</li>
                                 @endif
@@ -111,7 +114,7 @@
                 </form>
             </section>
             @include('shared.resumeAJAX')
-
+            <script src="{{asset('js/dashboard.js')}}"></script>
         </div>
     </div>
 @endsection

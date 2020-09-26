@@ -62,6 +62,9 @@
                                             <p class="h4 text-primary">{{$application->applicant->name}}</p>
                                             <footer class="blockquote-footer">Job Title: {{$application->applicant->job_title}}</footer>
                                         </blockquote>
+                                        @if($application->applicant->email_verified_at)
+                                            <p class="text-success">Verified Applicant <span data-feather="award"></span></p>
+                                        @endif
                                         <hr>
                                         <div id="email">
                                             <h6 class="text-info h6">Email:</h6>
@@ -146,5 +149,6 @@
         </aside>
 
 
+        <script src="{{asset('js/dashboard.js')}}"></script>
     </div>
 @endsection

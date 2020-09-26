@@ -17,19 +17,21 @@
                             <div class="result-wrp row">
                                 <div class="col-md-10 col-sm-8 col-xs-12 ">
 
-
                                     <!-- Card content -->
                                     <blockquote class="blockquote">
                                         <p class="h4 text-primary">{{$company->name}}</p>
                                         <footer class="blockquote-footer">{{$company->city}}, {{$company->country}}</footer>
                                     </blockquote>
+                                    @if($company->email_verified_at)
+                                        Verified Company <span data-feather="award">
+                                    @endif
                                     <div id="email">
                                         <h6 class="text-info h6">Email:</h6>
                                         <p class="h3">{{$company->email}}</p>
                                     </div>
                                     <hr>
                                     @if($creationDate = $company->birth_date)
-                                        <div id="creation-date">
+                                                <div id="creation-date">
                                             <h6 class="text-info h6">Creation Date:</h6>
                                             <em>{{ $creationDate }}</em>
                                         </div>
@@ -83,4 +85,6 @@
         </aside>
         {{--End Sidebar--}}
     </div>
+
+    <script src="{{asset('js/dashboard.js')}}"></script>
 @endsection
