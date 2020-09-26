@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Applicant;
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -14,6 +16,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        Applicant::factory()
+            ->times(100)
+            ->create();
+
+        Company::factory()
+            ->times(100)
+            ->create();
+
         $user1 = new user();
         $user1->name = 'User';
         $user1->job_title = 'Software Engineer';
@@ -37,10 +47,5 @@ class UserSeeder extends Seeder
         $user3->role_id = 3;
         $user3->save();
 
-
-
-        User::factory()
-            ->times(100)
-            ->create();
     }
 }

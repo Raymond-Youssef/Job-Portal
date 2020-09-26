@@ -31,7 +31,7 @@ class JobFactory extends Factory
             'skills' => $skills,
             'country' => $this->faker->country,
             'city' => $this->faker->city,
-            'company_id' =>2,
+            'company_id' =>$this->faker->numberBetween(101,200),
         ];
     }
 }

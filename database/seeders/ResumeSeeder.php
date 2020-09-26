@@ -14,6 +14,8 @@ class ResumeSeeder extends Seeder
      */
     public function run()
     {
-
+        Resume::factory()
+            ->times(500)
+            ->create();
     }
 }
