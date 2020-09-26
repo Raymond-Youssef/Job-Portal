@@ -140,6 +140,9 @@
 
                     <section id="resumes">
                         <h3 class="text-info">Choose a Resume:</h3>
+                        @error('resume')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <table class="table table-hover" id="resumes_list">
                             @if(count($resumes = $applicant->resumes)>0)
                                 @foreach($resumes as $resume)
@@ -170,11 +173,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <input type="radio" value="{{$resume->id}}" name="resume"
-                                                   @if($resume->default)
-                                                   checked
-                                                @endif
-                                            >
+                                            <label>
+                                                <input type="radio" value="{{$resume->id}}" name="resume_id"
+                                                       @if($resume->default)
+                                                       checked
+                                                    @endif
+                                                >
+                                            </label>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -183,7 +188,7 @@
                             @endif
                         </table>
                         {{-- Resumes Form --}}
-                        <h6 class="text-warning" role="button">Upload a Resume:</h6>
+                        <h6 class="text-warning">Upload a Resume:</h6>
                         <div id="message"></div>
                         <form id="resume-form" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -198,7 +203,7 @@
                     @if($image = $applicant->image)
                         <img src="{{asset($image->path)}}" class="img-thumbnail img-fluid" alt="Profile Picture" style="height: 18rem; width: auto;">
                     @else
-                        <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail img-fluid" style="height: 18rem; width: auto;">
+                        <img src="{{asset('assets/img/default_profile.png')}}" class="img-thumbnail img-fluid" alt="Profile Picture" style="height: 18rem; width: auto;">
                     @endif {{-- Image --}}
 
                     <div id="buttons">
@@ -208,7 +213,7 @@
                         <form method="POST" id="application-form" action="{{route('application.store')}}">
                             @csrf
                             @method('POST')
-                            <input type="hidden" id="resume-store" name="resume_id" value="">
+                            <input type="hidden" id="resume-store" name="resume" value="">
                             <input type="hidden" id="job-id" name="job_id" value="{{$job->id}}">
                             <button type="submit" class="btn btn-lg btn-primary" style="position: absolute; bottom: 2rem; right:2rem;">
                                 {{ __('Send Application') }}
@@ -216,8 +221,8 @@
                         </form>
                         <script>
                             $(document).ready(function (){
-                                $('#application-form').on('submit', function (event){
-                                    $('#resume-store').val($('input[name="resume"]:checked').val());
+                                $('#application-form').on('submit', function (){
+                                    $('#resume-store').val($('input[name="resume_id"]:checked').val());
                                 });
                             });
                         </script>

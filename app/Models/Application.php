@@ -13,5 +13,25 @@ class Application extends Model
         'user_id', 'job_id',
     ];
 
+    protected $fillable = [
+        'user_id', 'job_id', 'resume_id', 'status'
+    ];
+
     public $incrementing = false;
+
+    public function job()
+    {
+        return $this->belongsTo('App\Models\Job');
+    }
+
+    public function applicant()
+    {
+        return $this->belongsTo('App\Models\Applicant');
+    }
+
+    public function resume()
+    {
+        return $this->belongsTo('App\Models\Resume');
+    }
+
 }

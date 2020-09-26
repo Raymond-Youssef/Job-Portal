@@ -64,7 +64,7 @@ class ApplicationsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'resume_id' => 'required|numeric',
+            'resume' => 'required|numeric',
             'job_id' => 'required|numeric',
         ]);
         $user = Auth::user();
@@ -74,7 +74,7 @@ class ApplicationsController extends Controller
         }
         else
         {
-            if($resume = Resume::find($request->resume_id))
+            if($resume = Resume::find($request->resume))
             {
                 $this->authorize('store-applications', $resume);
                 $application = new Application();
