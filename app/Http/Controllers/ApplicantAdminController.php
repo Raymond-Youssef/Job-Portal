@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,6 +20,8 @@ class ApplicantAdminController extends Controller
         $this->middleware('auth');
         $this->middleware('AdminMiddleware');
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -115,6 +118,20 @@ class ApplicantAdminController extends Controller
         $applicant->save();
 
         return redirect()->route('applicant.index')->with(['success' => 'Applicant Edited Successfully']);
+    }
+
+    /**
+     * Verify the specified applicant from storage.
+     *
+     * @param Applicant $applicant
+     * @return RedirectResponse
+     */
+    public function verify(Applicant $applicant)
+    {
+        $applicant = Applicant::find($applicant->id);
+        $applicant->email_verified_at = Carbon::now();
+        $applicant->save();
+        return redirect()->route('applicant.index')->with(['success' => 'Applicant Verified Successfully']);
     }
 
     /**

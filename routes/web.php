@@ -91,9 +91,9 @@ Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function()
         return view('dashboard.index');
     })->name('dashboard')->middleware('auth');
     Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
+    Route::post('/applicant/verify/{applicant}', [ApplicantAdminController::class, 'verify'])->name('applicant.verify');
     Route::resource('/company', CompanyAdminController::class)->except(['create','store']);
 });
-
 
 /*
 |--------------------------------------------------------------------------

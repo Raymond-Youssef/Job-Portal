@@ -6,6 +6,7 @@
         <thead class="thead-dark">
         <tr>
             <th>#</th>
+            <th>Verified</th>
             <th>Name</th>
             <th>Job Title</th>
             <th>Email</th>
@@ -16,6 +17,11 @@
         @foreach ($applicants as $applicant)
             <tr>
                 <td><a href="{{route('applicant.show',$applicant)}}">{{$applicant->id}}</a></td>
+                <td>
+                    @if($applicant->email_verified_at)
+                        <span data-feather="award"></span>
+                    @endif
+                </td>
                 <td>{{$applicant->name}}</td>
                 <td>{{$applicant->job_title}}</td>
                 <td>{{$applicant->email}}</td>

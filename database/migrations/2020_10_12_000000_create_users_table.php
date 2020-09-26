@@ -51,6 +51,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('role_id')->default('1')->constrained();
             $table->string('company_name')->nullable();
             $table->rememberToken();
+            $table->timestamp('blocked_at')->nullable();
             $table->timestamps();
         });
 
