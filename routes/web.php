@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplicationsController;
+use App\Http\Controllers\CompanyAdminController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
@@ -90,7 +91,7 @@ Route::group(['prefix'=>'/dashboard','middleware'=>'AdminMiddleware'],function()
         return view('dashboard.index');
     })->name('dashboard')->middleware('auth');
     Route::resource('/applicant', ApplicantAdminController::class)->except(['create','store']);
-
+    Route::resource('/company', CompanyAdminController::class)->except(['create','store']);
 });
 
 

@@ -32,9 +32,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{route('company.index')}}">
                             <span data-feather="briefcase"></span>
-                            Company
+                            Companies
                         </a>
                     </li>
                 </ul>
@@ -57,6 +57,9 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4" style="margin-top: 5rem;">
+
+            @include('shared.flashMessages')
+
             @yield('main')
         </main>
     </div>
