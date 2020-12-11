@@ -74,7 +74,8 @@ and use the command  `git clone https://github.com/Omeganes/Job-Portal` to copy 
     - Checkout the `DB_PASSWORD` "default is empty"
 - Don't forget to create Database named `job_portal`
     - to do so, run the SQL command `CREATE DATABASE job_portal` in the phpmyadmin panel.
-
+- After you're done, run the command `php artisan migrate:fresh --seed`
+-then the command `php artisan serve`
 # Contribution Hints
 
 - It's NECESSARY to follow the naming conventions!
