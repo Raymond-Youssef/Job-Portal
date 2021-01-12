@@ -6,6 +6,16 @@ use App\Models\Applicant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 class ApplicantFactory extends Factory
 {
     /**
@@ -26,7 +36,7 @@ class ApplicantFactory extends Factory
             'name' => $this->faker->name,
             'job_title' => $this->faker->jobTitle,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => generateRandomString(24), // password
             'city' => $this->faker->city,
             'country' => $this->faker->country,
             'phone' => $this->faker->phoneNumber,

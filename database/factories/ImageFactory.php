@@ -24,7 +24,7 @@ class ImageFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'path' => $this->faker->imageUrl(),
+            'path' => 'https://picsum.photos/200',
         ];
     }
 }
