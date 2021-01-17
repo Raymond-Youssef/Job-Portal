@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Application extends Model
 {
     use HasFactory;
 
-    protected function setKeysForSaveQuery(Builder $query)
+    protected function setKeysForSaveQuery($query)
     {
         return $query->where('applicant_id', $this->getAttribute('applicant_id'))
             ->where('job_id', $this->getAttribute('job_id'));
